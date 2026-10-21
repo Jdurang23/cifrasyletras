@@ -1,5 +1,7 @@
+import java.util.Scanner;
 public class App {
-   
+    //inicialización del escaner
+    Scanner sc = new Scanner(System.in);
     //puntuaciones globales jugadores
 
     public static int puntosGlobalesJ1=0;
