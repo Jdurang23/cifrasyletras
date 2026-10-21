@@ -22,11 +22,12 @@ public class App {
 
     public static void main(String[] args){
         
-        System.out.println("");
-        System.out.println("Daniel");
+       System.out.println("-BIENVENIDO AL CONCURSO CIFRAS Y LETRAS: ");
+       System.out.println("[1].-Modo Concurso");
+       System.out.println("[2].-Modo Rápido:");
 
-        System.out.println("CAMBIO1");
+       
 
-        System.out.println("CAMBIO2");
+
     }
 }
