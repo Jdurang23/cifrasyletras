@@ -19,14 +19,13 @@ public class App {
     public static int cantidadOperacionesCalculadora=0;
     
     //datos desarrollo partida 
+    
 
     public static void main(String[] args){
-        
-        System.out.println("");
-        System.out.println("Daniel");
 
-        System.out.println("CAMBIO1");
+    }
 
-        System.out.println("CAMBIO2");
+    public static void cifraExacta(){
+         
     }
 }
