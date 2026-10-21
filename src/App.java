@@ -13,13 +13,12 @@ public class App {
     //parametros configuración
     
     public static int repeticionPrueba=0;
-    public static int cantidadNumerosCifraExacta=0;
     public static int cantidadLetras=0;
     public static int cantidadOperacionesCalculadora=0;
     
     //datos desarrollo partida 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         
         System.out.println("");
         System.out.println("Daniel");
@@ -27,7 +26,5 @@ public class App {
         System.out.println("CAMBIO1");
 
         System.out.println("CAMBIO2");
-
-        System.out.println("NUEVA FUNCIONALIDAD");
     }
 }
