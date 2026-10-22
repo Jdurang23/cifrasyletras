@@ -43,10 +43,11 @@ public class App {
 
                 case 1:
                         modoRapido();
+                        
                     break;
 
                 case 2:
-                        modoConcurso();
+                       // modoConcurso();
                     break;
                 case 3:
                     configuracionJuego();
@@ -113,7 +114,7 @@ public class App {
                     break;
 
                 case 2:
-                      palabraMasLarga();
+                      //palabraMasLarga();
                     break;
 
                 case 3:
