@@ -5,15 +5,14 @@ public class App {
     // inicialización del escaner
     public static Scanner sc = new Scanner(System.in);
     public static Random r = new Random();
-    // puntuaciones globales jugadores
+   // puntuacion prueba
+    public static int puntosJ1 = 0;
+    public static int puntosJ2 = 0;
 
-    public static int puntosGlobalesJ1 = 0;
-    public static int puntosGlobalesJ2 = 0;
-
-    // puntuaciones de cada prueba
-
-    public static int puntosPruebaJ1 = 0;
-    public static int puntosPruebaJ2 = 0;
+    // puntuaciones globales
+    public static int global1 = 0;
+    public static int global2 = 0;
+    
 
     // parametros configuración
 
@@ -21,8 +20,10 @@ public class App {
     public static int opcionMenu = 0;
     public static int modoJuego = 0;
     public static int modoRapido = 0;
-    public static int cantidadLetras = 0;
-    public static int cantidadOperacionesCalculadora = 0;
+    public static int cantidadLetras = 10;
+    public static int cantidadOperacionesCalculadora = 5;
+
+  
 
     // datos desarrollo partida
 
@@ -129,6 +130,9 @@ public class App {
         } while (modoRapido != 5);
 
     }
+
+    
+    
 
     public static void concurso() {
 
