@@ -45,7 +45,7 @@ public class App {
                     break;
 
                 case 2:
-                        concurso();
+                        modoConcurso();
                     break;
                 case 3:
                     configuracionJuego();
@@ -131,6 +131,10 @@ public class App {
 
     }
 
+
+   
+
+    
 
 
    public static void palabraMasLarga() {
@@ -275,6 +279,102 @@ public class App {
     }
 
 
+     public static void calculadoraHumana() {
+
+        long tiempoInicio = System.currentTimeMillis();
+        long tiempoFinal;
+        int segundosPenalizacion = 0;
+        int segundosTotales;
+        int tiempoFinalPenalizacion;
+        int operacionAleatoria;
+
+        int numeroInicial = r.nextInt(1, 100);
+        int numeroAleatorio = 0;
+
+        int resultado = 0;
+        int respuestaJugador;
+        char signo = ' ';
+
+        for (int jugador = 1; jugador <= 2; jugador++) {
+
+            System.out.println("---TURNO JUGADOR " + jugador + "---");
+            sc.nextLine();
+
+            for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
+
+                operacionAleatoria = r.nextInt(4);
+
+                switch (operacionAleatoria) {
+
+                    case 0:
+                        signo = '+';
+                        numeroAleatorio = r.nextInt(89) + 10;
+                        resultado = numeroInicial + numeroAleatorio;
+                        break;
+                    case 1:
+                        signo = '-';
+                        numeroAleatorio = r.nextInt(89) + 10;
+                        resultado = numeroInicial - numeroAleatorio;
+                        break;
+                    case 2:
+                        signo = '*';
+                        numeroAleatorio = r.nextInt(8) + 1;
+                        resultado = numeroInicial * numeroAleatorio;
+                        break;
+                    case 3:
+                        signo = '/';
+                        numeroAleatorio = r.nextInt(8) + 1;
+                        numeroInicial=numeroInicial*numeroAleatorio;
+                        resultado = numeroInicial / numeroAleatorio;
+                        break;
+
+                }
+
+                System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);
+                System.out.println("Cual es el resultado?");
+                respuestaJugador = Integer.parseInt(sc.nextLine());
+
+                if (respuestaJugador == resultado) {
+
+                    System.out.println("Respuesta correcta ");
+                } else {
+
+                    segundosPenalizacion = segundosPenalizacion + 20;
+                }
+
+                 numeroInicial = resultado;
+
+            }
+            tiempoFinal = System.currentTimeMillis();
+            segundosTotales = (int) ((tiempoFinal - tiempoInicio) / 1000);
+            tiempoFinalPenalizacion = segundosTotales + segundosPenalizacion;
+
+            System.out.println("segundos que tardo en contestar el jugador: " + segundosTotales + " segundos");
+            System.out.println("Tiempo de la ronda : " + tiempoFinalPenalizacion + " segundos ");
+
+            if (jugador == 1) {
+                puntosJ1 = tiempoFinalPenalizacion;
+
+            } else {
+                puntosJ2 = tiempoFinalPenalizacion;
+
+            }
+
+        }
+        System.out.println("RESULTADO");
+
+        if (puntosJ1 < puntosJ2) {
+            global1++;
+            System.out.println("Jugador 1 gana");
+            System.out.println("El jugador 1 suma 1 punto en el marcador global");
+        } else if (puntosJ2 < puntosJ1) {
+            global2++;
+            System.out.println("Jugador 2 gana");
+            System.out.println("El jugador 2 suma 1 punto en el marcador global");
+        } else {
+            System.out.println("EMPATE. ningún jugador suma puntos");
+        }
+    }
 
 
     
