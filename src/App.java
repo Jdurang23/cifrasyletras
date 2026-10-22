@@ -303,22 +303,22 @@ public class App {
 
                     case 0:
                         signo = '+';
-                        numeroAleatorio = r.nextInt(89) + 10;
+                        numeroAleatorio = r.nextInt(90) + 10;
                         resultado = numeroInicial + numeroAleatorio;
                         break;
                     case 1:
                         signo = '-';
-                        numeroAleatorio = r.nextInt(89) + 10;
+                        numeroAleatorio = r.nextInt(90) + 10;
                         resultado = numeroInicial - numeroAleatorio;
                         break;
                     case 2:
                         signo = '*';
-                        numeroAleatorio = r.nextInt(8) + 1;
+                        numeroAleatorio = r.nextInt(9) + 1;
                         resultado = numeroInicial * numeroAleatorio;
                         break;
                     case 3:
                         signo = '/';
-                        numeroAleatorio = r.nextInt(8) + 1;
+                        numeroAleatorio = r.nextInt(9) + 1;
                         numeroInicial=numeroInicial*numeroAleatorio;
                         resultado = numeroInicial / numeroAleatorio;
                         break;
