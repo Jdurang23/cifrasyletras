@@ -134,8 +134,12 @@ public class App {
     
     
 
-    public static void concurso() {
+   public static void modoConcurso() {
 
+        //palabraMasLarga();
+        //calculadoraHumana();
+
+        System.out.println("MARCADOR GLOBAL ----> Jugador1 : " + global1 + " | " + "Jugador2: " + global2);
 
     }
 
