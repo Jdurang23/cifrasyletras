@@ -36,7 +36,7 @@ public class App {
             System.out.println("2.-Concurso");
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
-            modoJuego = sc.nextInt();
+            modoJuego = Integer.parseInt(sc.nextLine());
 
             switch (modoJuego) {
 
@@ -108,15 +108,15 @@ public class App {
             switch (modoRapido) {
 
                 case 1:
-
+                       
                     break;
 
                 case 2:
-
+                      palabraMasLarga();
                     break;
 
                 case 3:
-
+                     
                     break;
 
                 case 4:
@@ -132,12 +132,7 @@ public class App {
     }
 
 
-   
-
-    
-
-
-   public static void palabraMasLarga() {
+       public static void palabraMasLarga() {
 
 
         String letrasTotales = "";
@@ -162,7 +157,7 @@ public class App {
             char letra = (char) (r.nextInt(26) + 'A');
             boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
 
-            if (!vocal) {
+            if (vocal) {
                 if (vocales < 6) {
                     letrasTotales += letra;
                     vocales++;
