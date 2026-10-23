@@ -10,11 +10,11 @@ public class App {
     public static int global1 = 0;
     public static int global2 = 0;
 
-    //puntuacion ronda
+    // puntuacion ronda
 
     public static int puntosJ1;
     public static int puntosJ2;
-    
+
     // parametros configuración
 
     public static int repeticionPrueba = 0;
@@ -22,11 +22,8 @@ public class App {
     public static int modoJuego = 0;
     public static int modoRapido = 0;
 
-  
     public static int cantidadLetras = 10;
     public static int cantidadOperacionesCalculadora = 5;
-
-  
 
     // datos desarrollo partida
 
@@ -44,12 +41,12 @@ public class App {
             switch (modoJuego) {
 
                 case 1:
-                        modoRapido();
-                        
+                    modoRapido();
+
                     break;
 
                 case 2:
-                       // modoConcurso();
+                    // modoConcurso();
                     break;
                 case 3:
                     configuracionJuego();
@@ -98,19 +95,15 @@ public class App {
         } while (opcionMenu != 4);
     }
 
-  
     public static void modoConcurso() {
 
         palabraMasLarga();
-        //calculadoraHumana();
+        // calculadoraHumana();
 
         System.out.println("MARCADOR GLOBAL ----> Jugador1 : " + global1 + " | " + "Jugador2: " + global2);
 
     }
-   
-   
-   
-   
+
     public static void modoRapido() {
 
         do {
@@ -125,22 +118,23 @@ public class App {
             switch (modoRapido) {
 
                 case 1:
-                       
+
                     break;
 
                 case 2:
-                      //palabraMasLarga();
+                    // palabraMasLarga();
                     break;
 
                 case 3:
-                     
+
                     break;
 
                 case 4:
 
                     break;
 
-                default:System.out.println("Saliste del modo rápido");
+                default:
+                    System.out.println("Saliste del modo rápido");
 
             }
 
@@ -148,10 +142,7 @@ public class App {
 
     }
 
-
-   
-
-     public static void cifraExacta(){
+    public static void cifraExacta() {
         int objetivo = rng.nextInt(100, 999);
         int auxiliar1 = rng.nextInt(1, 10);
         int auxiliar2 = rng.nextInt(1, 10);
@@ -161,7 +152,8 @@ public class App {
         int auxiliar6 = rng.nextInt(1, 10);
         for (int i = 0; i < 5; i++) {
             System.out.println("El objetivo es: " + objetivo);
-            System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)" + auxiliar3 + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
+            System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)" + auxiliar3
+                    + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
             System.out.println("Jugador introduzca su primer número auxiliar");
             int auxiliarJ = sc.nextInt();
             switch (auxiliarJ) {
@@ -185,17 +177,15 @@ public class App {
                     break;
                 default:
                     System.out.println("Ese número no es un auxiliar");
-               }   break;
             }
-            //rondaCifraE(auxiliarJ);
+            break;
         }
+        // rondaCifraE(auxiliarJ);
+    }
 
-        //public static int rondaCifraE(int auxiliarJ){};
-    
+    // public static int rondaCifraE(int auxiliarJ){};
 
-
-   public static void palabraMasLarga() {
-
+    public static void palabraMasLarga() {
 
         String letrasTotales = "";
         int vocales = 0;
@@ -335,8 +325,7 @@ public class App {
 
     }
 
-
-     public static void calculadoraHumana() {
+    public static void calculadoraHumana() {
 
         long tiempoInicio = System.currentTimeMillis();
         long tiempoFinal;
@@ -381,7 +370,7 @@ public class App {
                     case 3:
                         signo = '/';
                         numeroAleatorio = rng.nextInt(9) + 1;
-                        numeroInicial=numeroInicial*numeroAleatorio;
+                        numeroInicial = numeroInicial * numeroAleatorio;
                         resultado = numeroInicial / numeroAleatorio;
                         break;
 
@@ -399,7 +388,7 @@ public class App {
                     segundosPenalizacion = segundosPenalizacion + 20;
                 }
 
-                 numeroInicial = resultado;
+                numeroInicial = resultado;
 
             }
             tiempoFinal = System.currentTimeMillis();
@@ -431,8 +420,6 @@ public class App {
         } else {
             System.out.println("EMPATE. ningún jugador suma puntos");
         }
-     }
-
-
+    }
 
 }
