@@ -5,17 +5,16 @@ public class App {
     // inicialización del escaner
     public static Scanner sc = new Scanner(System.in);
     public static Random rng = new Random();
-    // puntuaciones globales jugadores
-
-    public static int puntosGlobalesJ1 = 0;
-    public static int puntosGlobalesJ2 = 0;
 
     // puntuaciones globales
     public static int global1 = 0;
     public static int global2 = 0;
-    
-    
 
+    //puntuacion ronda
+
+    public static int puntosJ1;
+    public static int puntosJ2;
+    
     // parametros configuración
 
     public static int repeticionPrueba = 0;
@@ -136,12 +135,158 @@ public class App {
 
     }
 
+
+
+   public static void palabraMasLarga() {
+
+
+        String letrasTotales = "";
+        int vocales = 0;
+        int consonantes = 0;
+        int total = 0;
+
+        String palabraJ1;
+        String palabraJ2;
+
+        boolean esValidaJ1 = false;
+        boolean esValidaJ2 = false;
+        String comprobar;
+
+        boolean puedeFormarseJ1 = true;
+        boolean puedeFormarseJ2 = true;
+        String aux1;
+        String aux2;
+
+        // Generar letras
+        while (total < 10) {
+            char letra = (char) (rng.nextInt(26) + 'A');
+            boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
+
+            if (!vocal) {
+                if (vocales < 6) {
+                    letrasTotales += letra;
+                    vocales++;
+                    total++;
+                }
+            } else {
+                if (consonantes < 6) {
+                    letrasTotales += letra;
+                    consonantes++;
+                    total++;
+                }
+            }
+        }
+
+        // se imprimen las letras generadas recogiendolas con un bucle for
+
+        for (int i = 0; i < letrasTotales.length(); i++) {
+
+            System.out.print(letrasTotales.charAt(i) + " ");
+
+        }
+
+        // se imprime las vocales y las consonantes
+        System.out.println();
+        System.out.println("Vocales: " + vocales + " | Consonantes: " + consonantes);
+
+        // se pide al usuario que introduzca las palabras de cada jugador
+        System.out.println("Introduce la palabra del jugador 1: ");
+        palabraJ1 = sc.nextLine().toUpperCase();
+        System.out.println("Introduce la palabra del jugador 2: ");
+        palabraJ2 = sc.nextLine().toUpperCase();
+
+        // DICCIONARIO JUGADOR 1
+        System.out.println("Jugador 2, ¿la palabra del Jugador 1 está en el diccionario?: (S/N)");
+        comprobar = sc.nextLine();
+        if (comprobar.equalsIgnoreCase("S")) {
+            esValidaJ1 = true;
+        } else if (comprobar.equalsIgnoreCase("N")) {
+            esValidaJ1 = false;
+        }
+
+        // DICCIONARIO JUGADOR 2
+        System.out.println("Jugador 1, ¿la palabra del Jugador 2 está en el diccionario?: (S/N)");
+        comprobar = sc.nextLine();
+        if (comprobar.equalsIgnoreCase("S")) {
+            esValidaJ2 = true;
+        } else if (comprobar.equalsIgnoreCase("N")) {
+            esValidaJ2 = false;
+        }
+
+        // Validacion Jugador 1
+        aux1 = letrasTotales;
+        for (int i = 0; i < palabraJ1.length(); i++) {
+
+            char letraActual = palabraJ1.charAt(i);
+            int indice = aux1.indexOf(letraActual);// buscamos la posicion en la que esta la letra
+
+            if (indice == -1) {
+                puedeFormarseJ1 = false;
+                break;
+            } else {
+                aux1 = aux1.substring(0, indice) + aux1.substring(indice + 1);// eliminamos
+            }
+        }
+
+        // Validacion Jugador 2
+        aux2 = letrasTotales;
+        for (int i = 0; i < palabraJ2.length(); i++) {
+
+            char letraActual = palabraJ2.charAt(i);
+            int indice = aux2.indexOf(letraActual);
+
+            if (indice == -1) {
+                puedeFormarseJ2 = false;
+                break;
+            } else {
+                aux2 = aux2.substring(0, indice) + aux2.substring(indice + 1);
+            }
+        }
+
+        // Conteo de puntos
+
+        if (esValidaJ1 && puedeFormarseJ1) {
+
+            puntosJ1 = palabraJ1.length();
+        }
+
+        if (esValidaJ2 && puedeFormarseJ2) {
+
+            puntosJ2 = palabraJ2.length();
+        }
+
+        // mostramos las palabras de cada jugador
+        System.out.println("Palabra jugador 1: " + palabraJ1);
+        System.out.println("Palabra jugador 2: " + palabraJ2);
+
+        // resultado
+        System.out.println("---RESULTADO---");
+        if (puntosJ1 > puntosJ2) {
+            global1++;
+            System.out.println("Gana el jugador 1");
+            System.out.println("El jugador 1 suma 1 punto en el marcador global");
+
+        } else if (puntosJ2 > puntosJ1) {
+            global2++;
+            System.out.println("Gana el jugador 2");
+            System.out.println("El jugador 2 suma 1 punto en el marcador global");
+
+        } else {
+
+            System.out.println("EMPATE. ningún jugador suma puntos");
+        }
+
+    }
+
+
+
+
     
     
 
    public static void modoConcurso() {
 
-        //palabraMasLarga();
+        palabraMasLarga();
         //calculadoraHumana();
 
         System.out.println("MARCADOR GLOBAL ----> Jugador1 : " + global1 + " | " + "Jugador2: " + global2);
