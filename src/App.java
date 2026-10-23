@@ -45,15 +45,13 @@ public class App {
 
                 case 1:
                         modoRapido();
-                        
                     break;
 
                 case 2:
-                       // modoConcurso();
+                        modoConcurso();
                     break;
                 case 3:
-                    configuracionJuego();
-
+                        configuracionJuego();
                     break;
 
                 default:
@@ -70,7 +68,7 @@ public class App {
         do {
 
             System.out.println("Menú de configuración , Introduzca una opción:");
-            System.out.println("1.-Introduzca las veces en las que se repite: ");
+            System.out.println("1.-Repetición pruebas: ");
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
@@ -81,6 +79,8 @@ public class App {
                 case 1:
                     System.out.println("Veces a repetir :");
                     repeticionPrueba = Integer.parseInt(sc.nextLine());
+                    repeticionPrueba();
+
                     break;
                 case 2:
                     System.out.println("Introduzca número de letras: ");
@@ -96,6 +96,20 @@ public class App {
             }
 
         } while (opcionMenu != 4);
+    }
+
+    //función para ver cuantas veces se repiten las pruebas
+    public static void repeticionPrueba(){
+
+         for(int i=0; i<=repeticionPrueba; i++){
+
+            cifraExacta();
+            palabraMasLarga();
+            calculadoraHumana();
+
+         }
+
+
     }
 
   
@@ -125,19 +139,19 @@ public class App {
             switch (modoRapido) {
 
                 case 1:
-                       
+                       cifraExacta();
                     break;
 
                 case 2:
-                      //palabraMasLarga();
+                      palabraMasLarga();
                     break;
 
                 case 3:
-                     
+                     calculadoraHumana();
                     break;
 
                 case 4:
-
+                     
                     break;
 
                 default:System.out.println("Saliste del modo rápido");
