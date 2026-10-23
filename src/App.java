@@ -41,16 +41,16 @@ public class App {
             switch (modoJuego) {
 
                 case 1:
-                    modoRapido();
 
+                        modoRapido();
                     break;
 
                 case 2:
-                    // modoConcurso();
+                        modoConcurso();
+                   
                     break;
                 case 3:
-                    configuracionJuego();
-
+                        configuracionJuego();
                     break;
 
                 default:
@@ -67,7 +67,7 @@ public class App {
         do {
 
             System.out.println("Menú de configuración , Introduzca una opción:");
-            System.out.println("1.-Introduzca las veces en las que se repite: ");
+            System.out.println("1.-Repetición pruebas: ");
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
@@ -78,6 +78,8 @@ public class App {
                 case 1:
                     System.out.println("Veces a repetir :");
                     repeticionPrueba = Integer.parseInt(sc.nextLine());
+                    repeticionPrueba();
+
                     break;
                 case 2:
                     System.out.println("Introduzca número de letras: ");
@@ -95,6 +97,21 @@ public class App {
         } while (opcionMenu != 4);
     }
 
+    //función para ver cuantas veces se repiten las pruebas
+    public static void repeticionPrueba(){
+
+         for(int i=0; i<=repeticionPrueba; i++){
+
+            cifraExacta();
+            palabraMasLarga();
+            calculadoraHumana();
+
+         }
+
+
+    }
+
+  
     public static void modoConcurso() {
 
         palabraMasLarga();
@@ -118,19 +135,19 @@ public class App {
             switch (modoRapido) {
 
                 case 1:
-
+                       cifraExacta();
                     break;
 
                 case 2:
-                    // palabraMasLarga();
+                      palabraMasLarga();
                     break;
 
                 case 3:
-
+                     calculadoraHumana();
                     break;
 
                 case 4:
-
+                     
                     break;
 
                 default:
@@ -187,7 +204,8 @@ public class App {
 
     public static void palabraMasLarga() {
 
-        String letrasTotales = "";
+
+        String cantidadLetras = "";
         int vocales = 0;
         int consonantes = 0;
         int total = 0;
@@ -211,13 +229,13 @@ public class App {
 
             if (!vocal) {
                 if (vocales < 6) {
-                    letrasTotales += letra;
+                    cantidadLetras += letra;
                     vocales++;
                     total++;
                 }
             } else {
                 if (consonantes < 6) {
-                    letrasTotales += letra;
+                    cantidadLetras += letra;
                     consonantes++;
                     total++;
                 }
@@ -226,9 +244,9 @@ public class App {
 
         // se imprimen las letras generadas recogiendolas con un bucle for
 
-        for (int i = 0; i < letrasTotales.length(); i++) {
+        for (int i = 0; i < cantidadLetras.length(); i++) {
 
-            System.out.print(letrasTotales.charAt(i) + " ");
+            System.out.print(cantidadLetras.charAt(i) + " ");
 
         }
 
@@ -261,7 +279,7 @@ public class App {
         }
 
         // Validacion Jugador 1
-        aux1 = letrasTotales;
+        aux1 = cantidadLetras;
         for (int i = 0; i < palabraJ1.length(); i++) {
 
             char letraActual = palabraJ1.charAt(i);
@@ -276,7 +294,7 @@ public class App {
         }
 
         // Validacion Jugador 2
-        aux2 = letrasTotales;
+        aux2 = cantidadLetras;
         for (int i = 0; i < palabraJ2.length(); i++) {
 
             char letraActual = palabraJ2.charAt(i);
