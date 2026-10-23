@@ -159,48 +159,68 @@ public class App {
 
     }
 
+    //Seccion La Cifra Exacta
+
     public static void cifraExacta() {
         int objetivo = rng.nextInt(100, 999);
-        int auxiliar1 = rng.nextInt(1, 10);
-        int auxiliar2 = rng.nextInt(1, 10);
-        int auxiliar3 = rng.nextInt(1, 10);
-        int auxiliar4 = rng.nextInt(1, 10);
-        int auxiliar5 = rng.nextInt(1, 10);
-        int auxiliar6 = rng.nextInt(1, 10);
+        int auxE1 = 0;
+        int auxE2 = 0;
         for (int i = 0; i < 5; i++) {
             System.out.println("El objetivo es: " + objetivo);
-            System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)" + auxiliar3
-                    + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
-            System.out.println("Jugador introduzca su primer número auxiliar");
-            int auxiliarJ = sc.nextInt();
-            switch (auxiliarJ) {
-                case 1:
-                    auxiliarJ = auxiliar1;
-                    break;
-                case 2:
-                    auxiliarJ = auxiliar2;
-                    break;
-                case 3:
-                    auxiliarJ = auxiliar3;
-                    break;
-                case 4:
-                    auxiliarJ = auxiliar4;
-                    break;
-                case 5:
-                    auxiliarJ = auxiliar5;
-                    break;
-                case 6:
-                    auxiliarJ = auxiliar6;
-                    break;
-                default:
-                    System.out.println("Ese número no es un auxiliar");
-            }
-            break;
+            auxE1 = elegirAux();
+            auxE2 = elegirAux();
+
         }
         // rondaCifraE(auxiliarJ);
     }
 
-    // public static int rondaCifraE(int auxiliarJ){};
+    /*public static int rondaCifraE(int auxE1, int auxE2){
+        System.out.println("Selecciona tu operación: ");
+        System.out.println("1: Suma");
+        System.out.println("2: Resta");
+        System.out.println("3: Multiplicación");
+        System.out.println("4: División");
+        return ;
+    };*/
+
+    
+
+    public static int elegirAux(){
+        int aux1 = rng.nextInt(10) + 1;
+        int aux2 = rng.nextInt(10) + 1;
+        int aux3 = rng.nextInt(10) + 1;
+        int aux4 = rng.nextInt(10) + 1;
+        int aux5 = rng.nextInt(10) + 1;
+        int aux6 = rng.nextInt(10) + 1;
+        System.out.println("los números auxiliarres son: " + "1)" + aux1 + "2)" + aux2 + "3)" + aux3 + "4)" + aux4 + "5)" + aux5 + "6)" + aux6);
+        System.out.println("Jugador introduzca su primer número auxiliar: ");
+        int auxiliarJ = sc.nextInt();
+        switch (auxiliarJ) {
+            case 1:
+                auxiliarJ = aux1;
+                break;
+            case 2:
+                auxiliarJ = aux2;
+                break;
+            case 3:
+                auxiliarJ = aux3;
+                break;
+            case 4:
+                auxiliarJ = aux4;
+                break;
+            case 5:
+                auxiliarJ = aux5;
+                break;
+            case 6:
+                auxiliarJ = aux6;
+                break;
+            default:
+                System.out.println("Ese número no es un auxiliar");
+        }
+        return auxiliarJ;
+    }
+
+    
 
     public static void palabraMasLarga() {
 
