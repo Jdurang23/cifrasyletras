@@ -14,6 +14,7 @@ public class App {
     public static int global1 = 0;
     public static int global2 = 0;
     
+    
 
     // parametros configuración
 
@@ -21,6 +22,8 @@ public class App {
     public static int opcionMenu = 0;
     public static int modoJuego = 0;
     public static int modoRapido = 0;
+
+  
     public static int cantidadLetras = 10;
     public static int cantidadOperacionesCalculadora = 5;
 
@@ -132,6 +135,9 @@ public class App {
         } while (modoRapido != 5);
 
     }
+
+    
+    
 
     public static void concurso() {
 
