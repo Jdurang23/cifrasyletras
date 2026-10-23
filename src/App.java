@@ -197,7 +197,7 @@ public class App {
    public static void palabraMasLarga() {
 
 
-        String letrasTotales = "";
+        String cantidadLetras = "";
         int vocales = 0;
         int consonantes = 0;
         int total = 0;
@@ -221,13 +221,13 @@ public class App {
 
             if (!vocal) {
                 if (vocales < 6) {
-                    letrasTotales += letra;
+                    cantidadLetras += letra;
                     vocales++;
                     total++;
                 }
             } else {
                 if (consonantes < 6) {
-                    letrasTotales += letra;
+                    cantidadLetras += letra;
                     consonantes++;
                     total++;
                 }
@@ -236,9 +236,9 @@ public class App {
 
         // se imprimen las letras generadas recogiendolas con un bucle for
 
-        for (int i = 0; i < letrasTotales.length(); i++) {
+        for (int i = 0; i < cantidadLetras.length(); i++) {
 
-            System.out.print(letrasTotales.charAt(i) + " ");
+            System.out.print(cantidadLetras.charAt(i) + " ");
 
         }
 
@@ -271,7 +271,7 @@ public class App {
         }
 
         // Validacion Jugador 1
-        aux1 = letrasTotales;
+        aux1 = cantidadLetras;
         for (int i = 0; i < palabraJ1.length(); i++) {
 
             char letraActual = palabraJ1.charAt(i);
@@ -286,7 +286,7 @@ public class App {
         }
 
         // Validacion Jugador 2
-        aux2 = letrasTotales;
+        aux2 = cantidadLetras;
         for (int i = 0; i < palabraJ2.length(); i++) {
 
             char letraActual = palabraJ2.charAt(i);
