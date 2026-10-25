@@ -12,8 +12,8 @@ public class App {
 
     // puntuacion ronda
 
-    public static int puntosJ1;
-    public static int puntosJ2;
+    public static double puntosJ1;
+    public static double puntosJ2;
 
     // parametros configuración
 
@@ -36,7 +36,7 @@ public class App {
             System.out.println("2.-Concurso");
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
-            modoJuego = Integer.parseInt(sc.nextLine());
+            modoJuego = sc.nextInt();
 
             switch (modoJuego) {
 
@@ -69,7 +69,7 @@ public class App {
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
-            opcionMenu = Integer.parseInt(sc.nextLine());
+            opcionMenu = sc.nextInt();
 
             switch (opcionMenu) {
 
@@ -111,7 +111,7 @@ public class App {
             System.out.println("3.-La calculadora humana");
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
-            modoRapido = Integer.parseInt(sc.nextLine());
+            modoRapido = sc.nextInt();
 
             switch (modoRapido) {
 
@@ -133,62 +133,112 @@ public class App {
 
                 default:
                     System.out.println("Saliste del modo rápido");
-
             }
 
         } while (modoRapido != 5);
 
     }
 
-    
+    //Seccion La Cifra Exacta
+
     public static void cifraExacta() {
-
-        for (int j = 0; j < repeticionPrueba; j++) {
-
-            int objetivo = rng.nextInt(100, 999);
-            int auxiliar1 = rng.nextInt(1, 10);
-            int auxiliar2 = rng.nextInt(1, 10);
-            int auxiliar3 = rng.nextInt(1, 10);
-            int auxiliar4 = rng.nextInt(1, 10);
-            int auxiliar5 = rng.nextInt(1, 10);
-            int auxiliar6 = rng.nextInt(1, 10);
-            for (int i = 0; i < 5; i++) {
-                System.out.println("El objetivo es: " + objetivo);
-                System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)"
-                        + auxiliar3 + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
-                System.out.println("Jugador introduzca su primer número auxiliar");
-                int auxiliarJ = sc.nextInt();
-                switch (auxiliarJ) {
-                    case 1:
-                        auxiliarJ = auxiliar1;
-                        break;
-                    case 2:
-                        auxiliarJ = auxiliar2;
-                        break;
-                    case 3:
-                        auxiliarJ = auxiliar3;
-                        break;
-                    case 4:
-                        auxiliarJ = auxiliar4;
-                        break;
-                    case 5:
-                        auxiliarJ = auxiliar5;
-                        break;
-                    case 6:
-                        auxiliarJ = auxiliar6;
-                        break;
-                    default:
-                        System.out.println("Ese número no es un auxiliar");
-                }
-                break;
-            }
-
-        } // rondaCifraE(auxiliarJ);
+        int objetivo = rng.nextInt(100, 999);
+        int aux1 = rng.nextInt(10) + 1;
+        int aux2 = rng.nextInt(10) + 1;
+        int aux3 = rng.nextInt(10) + 1;
+        int aux4 = rng.nextInt(10) + 1;
+        int aux5 = rng.nextInt(10) + 1;
+        int aux6 = rng.nextInt(10) + 1;
+        System.out.println("El objetivo es: " + objetivo);
+        System.out.println("Turno de jugador 1");
+        double auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        double auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
+        System.out.println("Turno de jugador 2");
+        auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ2 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
+        ganador();
     }
 
-    // public static int rondaCifraE(int auxiliarJ){};
+    public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        double resultado = 0; 
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Operación " + (i + 1) + " de 5");
+            System.out.println("1: Suma");
+            System.out.println("2: Resta");
+            System.out.println("3: Multiplicación");
+            System.out.println("4: División");
+            int operacion = sc.nextInt();
+            switch (operacion) {
+                case 1:
+                    resultado = auxE1 + auxE2;
+                    break;
+                case 2:
+                    resultado = auxE1 - auxE2;
+                    break;
+                case 3:
+                    resultado = auxE1 * auxE2;
+                    break;
+                case 4:
+                    resultado = auxE1 / auxE2;
+                    break;
+                default:
+                    System.out.println("Esa opcion no vale");
+                    break;
+            }
+            auxE1 = resultado;
+            System.out.println("El resultado es: " + resultado);
+              if (i < 4) {
+            auxE2 = elegirAux(
+                aux1, aux2, aux3, aux4, aux5, aux6);
+            }
+        }
+        return Math.abs(objetivo - resultado);
+    };
 
-   //FUNCION PALABRA MAS LARGA
+    
+
+    public static double elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) " + aux4 + " 5) " + aux5 + " 6) " + aux6);
+        System.out.println("Jugador introduzca el número auxiliar: ");
+        int auxiliarJ = sc.nextInt();
+        switch (auxiliarJ) {
+            case 1:
+                auxiliarJ = aux1;
+                break;
+            case 2:
+                auxiliarJ = aux2;
+                break;
+            case 3:
+                auxiliarJ = aux3;
+                break;
+            case 4:
+                auxiliarJ = aux4;
+                break;
+            case 5:
+                auxiliarJ = aux5;
+                break;
+            case 6:
+                auxiliarJ = aux6;
+                break;
+            default:
+                System.out.println("Ese número no es un auxiliar");
+        }
+        return auxiliarJ;
+    }
+
+    public static void ganador(){
+        if (puntosJ1 < puntosJ2) {
+            System.out.println("Gana el jugador 1");
+            global1++;
+        } else if (puntosJ2 < puntosJ1) {
+            System.out.println("Gana el jugador 2");
+            global2++;
+        } else {
+            System.out.println("Empate");
+        }
+    }
 
     public static void palabraMasLarga() {
 
