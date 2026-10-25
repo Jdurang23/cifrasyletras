@@ -10,11 +10,11 @@ public class App {
     public static int global1 = 0;
     public static int global2 = 0;
 
-    //puntuacion ronda
+    // puntuacion ronda
 
     public static int puntosJ1;
     public static int puntosJ2;
-    
+
     // parametros configuración
 
     public static int repeticionPrueba = 0;
@@ -22,7 +22,6 @@ public class App {
     public static int modoJuego = 0;
     public static int modoRapido = 0;
 
-  
     public static int cantidadLetras = 10;
     public static int cantidadOperacionesCalculadora = 5;
 
@@ -42,14 +41,14 @@ public class App {
             switch (modoJuego) {
 
                 case 1:
-                        modoRapido();
+                    modoRapido();
                     break;
 
                 case 2:
-                        modoConcurso();
+                    modoConcurso();
                     break;
                 case 3:
-                        configuracionJuego();
+                    configuracionJuego();
                     break;
 
                 default:
@@ -77,8 +76,6 @@ public class App {
                 case 1:
                     System.out.println("Veces a repetir :");
                     repeticionPrueba = Integer.parseInt(sc.nextLine());
-                    repeticionPrueba();
-
                     break;
                 case 2:
                     System.out.println("Introduzca número de letras: ");
@@ -96,33 +93,15 @@ public class App {
         } while (opcionMenu != 4);
     }
 
-    //función para ver cuantas veces se repiten las pruebas
-    public static void repeticionPrueba(){
-
-         for(int i=0; i<=repeticionPrueba; i++){
-
-            cifraExacta();
-            palabraMasLarga();
-            calculadoraHumana();
-
-         }
-
-
-    }
-
-  
     public static void modoConcurso() {
-
+        cifraExacta();
         palabraMasLarga();
-        //calculadoraHumana();
+        calculadoraHumana();
 
         System.out.println("MARCADOR GLOBAL ----> Jugador1 : " + global1 + " | " + "Jugador2: " + global2);
 
     }
-   
-   
-   
-   
+
     public static void modoRapido() {
 
         do {
@@ -137,22 +116,23 @@ public class App {
             switch (modoRapido) {
 
                 case 1:
-                       cifraExacta();
+                    cifraExacta();
                     break;
 
                 case 2:
-                      palabraMasLarga();
+                    palabraMasLarga();
                     break;
 
                 case 3:
-                     calculadoraHumana();
+                    calculadoraHumana();
                     break;
 
                 case 4:
-                     
+
                     break;
 
-                default:System.out.println("Saliste del modo rápido");
+                default:
+                    System.out.println("Saliste del modo rápido");
 
             }
 
@@ -160,291 +140,296 @@ public class App {
 
     }
 
-
-   
-
-     public static void cifraExacta(){
-        int objetivo = rng.nextInt(100, 999);
-        int auxiliar1 = rng.nextInt(1, 10);
-        int auxiliar2 = rng.nextInt(1, 10);
-        int auxiliar3 = rng.nextInt(1, 10);
-        int auxiliar4 = rng.nextInt(1, 10);
-        int auxiliar5 = rng.nextInt(1, 10);
-        int auxiliar6 = rng.nextInt(1, 10);
-        for (int i = 0; i < 5; i++) {
-            System.out.println("El objetivo es: " + objetivo);
-            System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)" + auxiliar3 + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
-            System.out.println("Jugador introduzca su primer número auxiliar");
-            int auxiliarJ = sc.nextInt();
-            switch (auxiliarJ) {
-                case 1:
-                    auxiliarJ = auxiliar1;
-                    break;
-                case 2:
-                    auxiliarJ = auxiliar2;
-                    break;
-                case 3:
-                    auxiliarJ = auxiliar3;
-                    break;
-                case 4:
-                    auxiliarJ = auxiliar4;
-                    break;
-                case 5:
-                    auxiliarJ = auxiliar5;
-                    break;
-                case 6:
-                    auxiliarJ = auxiliar6;
-                    break;
-                default:
-                    System.out.println("Ese número no es un auxiliar");
-               }   break;
-            }
-            //rondaCifraE(auxiliarJ);
-        }
-
-        //public static int rondaCifraE(int auxiliarJ){};
     
+    public static void cifraExacta() {
 
+        for (int j = 0; j < repeticionPrueba; j++) {
 
-   public static void palabraMasLarga() {
-
-
-        String cantidadLetras = "";
-        int vocales = 0;
-        int consonantes = 0;
-        int total = 0;
-
-        String palabraJ1;
-        String palabraJ2;
-
-        boolean esValidaJ1 = false;
-        boolean esValidaJ2 = false;
-        String comprobar;
-
-        boolean puedeFormarseJ1 = true;
-        boolean puedeFormarseJ2 = true;
-        String aux1;
-        String aux2;
-
-        // Generar letras
-        while (total < 10) {
-            char letra = (char) (rng.nextInt(26) + 'A');
-            boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
-
-            if (!vocal) {
-                if (vocales < 6) {
-                    cantidadLetras += letra;
-                    vocales++;
-                    total++;
-                }
-            } else {
-                if (consonantes < 6) {
-                    cantidadLetras += letra;
-                    consonantes++;
-                    total++;
-                }
-            }
-        }
-
-        // se imprimen las letras generadas recogiendolas con un bucle for
-
-        for (int i = 0; i < cantidadLetras.length(); i++) {
-
-            System.out.print(cantidadLetras.charAt(i) + " ");
-
-        }
-
-        // se imprime las vocales y las consonantes
-        System.out.println();
-        System.out.println("Vocales: " + vocales + " | Consonantes: " + consonantes);
-
-        // se pide al usuario que introduzca las palabras de cada jugador
-        System.out.println("Introduce la palabra del jugador 1: ");
-        palabraJ1 = sc.nextLine().toUpperCase();
-        System.out.println("Introduce la palabra del jugador 2: ");
-        palabraJ2 = sc.nextLine().toUpperCase();
-
-        // DICCIONARIO JUGADOR 1
-        System.out.println("Jugador 2, ¿la palabra del Jugador 1 está en el diccionario?: (S/N)");
-        comprobar = sc.nextLine();
-        if (comprobar.equalsIgnoreCase("S")) {
-            esValidaJ1 = true;
-        } else if (comprobar.equalsIgnoreCase("N")) {
-            esValidaJ1 = false;
-        }
-
-        // DICCIONARIO JUGADOR 2
-        System.out.println("Jugador 1, ¿la palabra del Jugador 2 está en el diccionario?: (S/N)");
-        comprobar = sc.nextLine();
-        if (comprobar.equalsIgnoreCase("S")) {
-            esValidaJ2 = true;
-        } else if (comprobar.equalsIgnoreCase("N")) {
-            esValidaJ2 = false;
-        }
-
-        // Validacion Jugador 1
-        aux1 = cantidadLetras;
-        for (int i = 0; i < palabraJ1.length(); i++) {
-
-            char letraActual = palabraJ1.charAt(i);
-            int indice = aux1.indexOf(letraActual);// buscamos la posicion en la que esta la letra
-
-            if (indice == -1) {
-                puedeFormarseJ1 = false;
-                break;
-            } else {
-                aux1 = aux1.substring(0, indice) + aux1.substring(indice + 1);// eliminamos
-            }
-        }
-
-        // Validacion Jugador 2
-        aux2 = cantidadLetras;
-        for (int i = 0; i < palabraJ2.length(); i++) {
-
-            char letraActual = palabraJ2.charAt(i);
-            int indice = aux2.indexOf(letraActual);
-
-            if (indice == -1) {
-                puedeFormarseJ2 = false;
-                break;
-            } else {
-                aux2 = aux2.substring(0, indice) + aux2.substring(indice + 1);
-            }
-        }
-
-        // Conteo de puntos
-
-        if (esValidaJ1 && puedeFormarseJ1) {
-
-            puntosJ1 = palabraJ1.length();
-        }
-
-        if (esValidaJ2 && puedeFormarseJ2) {
-
-            puntosJ2 = palabraJ2.length();
-        }
-
-        // mostramos las palabras de cada jugador
-        System.out.println("Palabra jugador 1: " + palabraJ1);
-        System.out.println("Palabra jugador 2: " + palabraJ2);
-
-        // resultado
-        System.out.println("---RESULTADO---");
-        if (puntosJ1 > puntosJ2) {
-            global1++;
-            System.out.println("Gana el jugador 1");
-            System.out.println("El jugador 1 suma 1 punto en el marcador global");
-
-        } else if (puntosJ2 > puntosJ1) {
-            global2++;
-            System.out.println("Gana el jugador 2");
-            System.out.println("El jugador 2 suma 1 punto en el marcador global");
-
-        } else {
-
-            System.out.println("EMPATE. ningún jugador suma puntos");
-        }
-
-    }
-
-
-     public static void calculadoraHumana() {
-
-        long tiempoInicio = System.currentTimeMillis();
-        long tiempoFinal;
-        int segundosPenalizacion = 0;
-        int segundosTotales;
-        int tiempoFinalPenalizacion;
-        int operacionAleatoria;
-
-        int numeroInicial = rng.nextInt(1, 100);
-        int numeroAleatorio = 0;
-
-        int resultado = 0;
-        int respuestaJugador;
-        char signo = ' ';
-
-        for (int jugador = 1; jugador <= 2; jugador++) {
-
-            System.out.println("---TURNO JUGADOR " + jugador + "---");
-            sc.nextLine();
-
-            for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
-
-                operacionAleatoria = rng.nextInt(4);
-
-                switch (operacionAleatoria) {
-
-                    case 0:
-                        signo = '+';
-                        numeroAleatorio = rng.nextInt(90) + 10;
-                        resultado = numeroInicial + numeroAleatorio;
-                        break;
+            int objetivo = rng.nextInt(100, 999);
+            int auxiliar1 = rng.nextInt(1, 10);
+            int auxiliar2 = rng.nextInt(1, 10);
+            int auxiliar3 = rng.nextInt(1, 10);
+            int auxiliar4 = rng.nextInt(1, 10);
+            int auxiliar5 = rng.nextInt(1, 10);
+            int auxiliar6 = rng.nextInt(1, 10);
+            for (int i = 0; i < 5; i++) {
+                System.out.println("El objetivo es: " + objetivo);
+                System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)"
+                        + auxiliar3 + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
+                System.out.println("Jugador introduzca su primer número auxiliar");
+                int auxiliarJ = sc.nextInt();
+                switch (auxiliarJ) {
                     case 1:
-                        signo = '-';
-                        numeroAleatorio = rng.nextInt(90) + 10;
-                        resultado = numeroInicial - numeroAleatorio;
+                        auxiliarJ = auxiliar1;
                         break;
                     case 2:
-                        signo = '*';
-                        numeroAleatorio = rng.nextInt(9) + 1;
-                        resultado = numeroInicial * numeroAleatorio;
+                        auxiliarJ = auxiliar2;
                         break;
                     case 3:
-                        signo = '/';
-                        numeroAleatorio = rng.nextInt(9) + 1;
-                        numeroInicial=numeroInicial*numeroAleatorio;
-                        resultado = numeroInicial / numeroAleatorio;
+                        auxiliarJ = auxiliar3;
                         break;
-
+                    case 4:
+                        auxiliarJ = auxiliar4;
+                        break;
+                    case 5:
+                        auxiliarJ = auxiliar5;
+                        break;
+                    case 6:
+                        auxiliarJ = auxiliar6;
+                        break;
+                    default:
+                        System.out.println("Ese número no es un auxiliar");
                 }
+                break;
+            }
 
-                System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);
-                System.out.println("Cual es el resultado?");
-                respuestaJugador = Integer.parseInt(sc.nextLine());
+        } // rondaCifraE(auxiliarJ);
+    }
 
-                if (respuestaJugador == resultado) {
+    // public static int rondaCifraE(int auxiliarJ){};
 
-                    System.out.println("Respuesta correcta ");
+   //FUNCION PALABRA MAS LARGA
+
+    public static void palabraMasLarga() {
+
+        for (int j = 0; j < repeticionPrueba; j++) {
+
+            String cantidadLetras = "";
+            int vocales = 0;
+            int consonantes = 0;
+            int total = 0;
+
+            String palabraJ1;
+            String palabraJ2;
+
+            boolean esValidaJ1 = false;
+            boolean esValidaJ2 = false;
+            String comprobar;
+
+            boolean puedeFormarseJ1 = true;
+            boolean puedeFormarseJ2 = true;
+            String aux1;
+            String aux2;
+
+            // Generar letras
+            while (total < 10) {
+                char letra = (char) (rng.nextInt(26) + 'A');
+                boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
+
+                if (!vocal) {
+                    if (vocales < 6) {
+                        cantidadLetras += letra;
+                        vocales++;
+                        total++;
+                    }
                 } else {
-
-                    segundosPenalizacion = segundosPenalizacion + 20;
+                    if (consonantes < 6) {
+                        cantidadLetras += letra;
+                        consonantes++;
+                        total++;
+                    }
                 }
+            }
 
-                 numeroInicial = resultado;
+            // se imprimen las letras generadas recogiendolas con un bucle for
+
+            for (int i = 0; i < cantidadLetras.length(); i++) {
+
+                System.out.print(cantidadLetras.charAt(i) + " ");
 
             }
-            tiempoFinal = System.currentTimeMillis();
-            segundosTotales = (int) ((tiempoFinal - tiempoInicio) / 1000);
-            tiempoFinalPenalizacion = segundosTotales + segundosPenalizacion;
 
-            System.out.println("segundos que tardo en contestar el jugador: " + segundosTotales + " segundos");
-            System.out.println("Tiempo de la ronda : " + tiempoFinalPenalizacion + " segundos ");
+            // se imprime las vocales y las consonantes
+            System.out.println();
+            System.out.println("Vocales: " + vocales + " | Consonantes: " + consonantes);
 
-            if (jugador == 1) {
-                puntosJ1 = tiempoFinalPenalizacion;
+            // se pide al usuario que introduzca las palabras de cada jugador
+            System.out.println("Introduce la palabra del jugador 1: ");
+            palabraJ1 = String.valueOf(sc.nextLine()).toUpperCase();
+            System.out.println("Introduce la palabra del jugador 2: ");
+            palabraJ2 = String.valueOf(sc.nextLine()).toUpperCase();
+
+            // DICCIONARIO JUGADOR 1
+            System.out.println("Jugador 2, ¿la palabra del Jugador 1 está en el diccionario?: (S/N)");
+            comprobar = sc.nextLine();
+            if (comprobar.equalsIgnoreCase("S")) {
+                esValidaJ1 = true;
+            } else if (comprobar.equalsIgnoreCase("N")) {
+                esValidaJ1 = false;
+            }
+
+            // DICCIONARIO JUGADOR 2
+            System.out.println("Jugador 1, ¿la palabra del Jugador 2 está en el diccionario?: (S/N)");
+            comprobar = sc.nextLine();
+            if (comprobar.equalsIgnoreCase("S")) {
+                esValidaJ2 = true;
+            } else if (comprobar.equalsIgnoreCase("N")) {
+                esValidaJ2 = false;
+            }
+
+            // Validacion Jugador 1
+            aux1 = cantidadLetras;
+            for (int i = 0; i < palabraJ1.length(); i++) {
+
+                char letraActual = palabraJ1.charAt(i);
+                int indice = aux1.indexOf(letraActual);// buscamos la posicion en la que esta la letra
+
+                if (indice == -1) {
+                    puedeFormarseJ1 = false;
+                    break;
+                } else {
+                    aux1 = aux1.substring(0, indice) + aux1.substring(indice + 1);// eliminamos
+                }
+            }
+
+            // Validacion Jugador 2
+            aux2 = cantidadLetras;
+            for (int i = 0; i < palabraJ2.length(); i++) {
+
+                char letraActual = palabraJ2.charAt(i);
+                int indice = aux2.indexOf(letraActual);
+
+                if (indice == -1) {
+                    puedeFormarseJ2 = false;
+                    break;
+                } else {
+                    aux2 = aux2.substring(0, indice) + aux2.substring(indice + 1);
+                }
+            }
+
+            // Conteo de puntos
+
+            if (esValidaJ1 && puedeFormarseJ1) {
+
+                puntosJ1 = palabraJ1.length();
+            }
+
+            if (esValidaJ2 && puedeFormarseJ2) {
+
+                puntosJ2 = palabraJ2.length();
+            }
+
+            // mostramos las palabras de cada jugador
+            System.out.println("Palabra jugador 1: " + palabraJ1);
+            System.out.println("Palabra jugador 2: " + palabraJ2);
+
+            // resultado
+            System.out.println("---RESULTADO---");
+            if (puntosJ1 > puntosJ2) {
+                global1++;
+                System.out.println("Gana el jugador 1");
+                System.out.println("El jugador 1 suma 1 punto en el marcador global");
+
+            } else if (puntosJ2 > puntosJ1) {
+                global2++;
+                System.out.println("Gana el jugador 2");
+                System.out.println("El jugador 2 suma 1 punto en el marcador global");
 
             } else {
-                puntosJ2 = tiempoFinalPenalizacion;
+
+                System.out.println("EMPATE. ningún jugador suma puntos");
+            }
+        }
+    }
+
+    //FUNCION CALCULADORA HUMANA
+    public static void calculadoraHumana() {
+        for (int j = 0; j < repeticionPrueba; j++) {
+
+            long tiempoInicio = System.currentTimeMillis();
+            long tiempoFinal;
+            int segundosPenalizacion = 0;
+            int segundosTotales;
+            int tiempoFinalPenalizacion;
+            int operacionAleatoria;
+
+            int numeroInicial = rng.nextInt(1, 100);
+            int numeroAleatorio = 0;
+
+            int resultado = 0;
+            int respuestaJugador;
+            char signo = ' ';
+
+            for (int jugador = 1; jugador <= 2; jugador++) {
+
+                System.out.println("---TURNO JUGADOR " + jugador + "---");
+                sc.nextLine();
+
+                for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
+
+                    operacionAleatoria = rng.nextInt(4);
+
+                    switch (operacionAleatoria) {
+
+                        case 0:
+                            signo = '+';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial + numeroAleatorio;
+                            break;
+                        case 1:
+                            signo = '-';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial - numeroAleatorio;
+                            break;
+                        case 2:
+                            signo = '*';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            resultado = numeroInicial * numeroAleatorio;
+                            break;
+                        case 3:
+                            signo = '/';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            numeroInicial = numeroInicial * numeroAleatorio;
+                            resultado = numeroInicial / numeroAleatorio;
+                            break;
+
+                    }
+
+                    System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);
+                    System.out.println("Cual es el resultado?");
+                    respuestaJugador = Integer.parseInt(sc.nextLine());
+
+                    if (respuestaJugador == resultado) {
+
+                        System.out.println("Respuesta correcta ");
+                    } else {
+
+                        segundosPenalizacion = segundosPenalizacion + 20;
+                    }
+
+                    numeroInicial = resultado;
+
+                }
+                tiempoFinal = System.currentTimeMillis();
+                segundosTotales = (int) ((tiempoFinal - tiempoInicio) / 1000);
+                tiempoFinalPenalizacion = segundosTotales + segundosPenalizacion;
+
+                System.out.println("segundos que tardo en contestar el jugador: " + segundosTotales + " segundos");
+                System.out.println("Tiempo de la ronda : " + tiempoFinalPenalizacion + " segundos ");
+
+                if (jugador == 1) {
+                    puntosJ1 = tiempoFinalPenalizacion;
+
+                } else {
+                    puntosJ2 = tiempoFinalPenalizacion;
+
+                }
 
             }
+            System.out.println("RESULTADO");
 
+            if (puntosJ1 < puntosJ2) {
+                global1++;
+                System.out.println("Jugador 1 gana");
+                System.out.println("El jugador 1 suma 1 punto en el marcador global");
+            } else if (puntosJ2 < puntosJ1) {
+                global2++;
+                System.out.println("Jugador 2 gana");
+                System.out.println("El jugador 2 suma 1 punto en el marcador global");
+            } else {
+                System.out.println("EMPATE. ningún jugador suma puntos");
+            }
         }
-        System.out.println("RESULTADO");
-
-        if (puntosJ1 < puntosJ2) {
-            global1++;
-            System.out.println("Jugador 1 gana");
-            System.out.println("El jugador 1 suma 1 punto en el marcador global");
-        } else if (puntosJ2 < puntosJ1) {
-            global2++;
-            System.out.println("Jugador 2 gana");
-            System.out.println("El jugador 2 suma 1 punto en el marcador global");
-        } else {
-            System.out.println("EMPATE. ningún jugador suma puntos");
-        }
-     }
-
-
+    }
 
 }
