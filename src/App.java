@@ -29,6 +29,8 @@ public class App {
 
     public static void main(String[] args) {
 
+        movilViejo();
+
         do {
             System.out.println("-BIENVENIDO AL CONCURSO CIFRAS Y LETRAS-");
             System.out.println("Seleccione un juego:");
@@ -41,11 +43,11 @@ public class App {
             switch (modoJuego) {
 
                 case 1:
-                    modoRapido();
+                        modoRapido();
                     break;
 
                 case 2:
-                    modoConcurso();
+                        modoConcurso();
                     break;
                 case 3:
                     configuracionJuego();
@@ -361,27 +363,27 @@ public class App {
 
                     switch (operacionAleatoria) {
 
-                        case 0:
-                            signo = '+';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial + numeroAleatorio;
-                            break;
-                        case 1:
-                            signo = '-';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial - numeroAleatorio;
-                            break;
-                        case 2:
-                            signo = '*';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            resultado = numeroInicial * numeroAleatorio;
-                            break;
-                        case 3:
-                            signo = '/';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            numeroInicial = numeroInicial * numeroAleatorio;
-                            resultado = numeroInicial / numeroAleatorio;
-                            break;
+                    case 0:
+                        signo = '+';
+                        numeroAleatorio = rng.nextInt(90) + 10;
+                        resultado = numeroInicial + numeroAleatorio;
+                        break;
+                    case 1:
+                        signo = '-';
+                        numeroAleatorio = rng.nextInt(90) + 10;
+                        resultado = numeroInicial - numeroAleatorio;
+                        break;
+                    case 2:
+                        signo = '*';
+                        numeroAleatorio = rng.nextInt(9) + 1;
+                        resultado = numeroInicial * numeroAleatorio;
+                        break;
+                    case 3:
+                        signo = '/';
+                        numeroAleatorio = rng.nextInt(9) + 1;
+                        numeroInicial = numeroInicial * numeroAleatorio;
+                        resultado = numeroInicial / numeroAleatorio;
+                        break;
 
                     }
 
@@ -397,7 +399,7 @@ public class App {
                         segundosPenalizacion = segundosPenalizacion + 20;
                     }
 
-                    numeroInicial = resultado;
+                numeroInicial = resultado;
 
                 }
                 tiempoFinal = System.currentTimeMillis();
@@ -431,5 +433,67 @@ public class App {
             }
         }
     }
+
+
+ //PRUEBA ORIGINAL
+
+        public static void movilViejo(){
+
+            int numeroMovil;
+            int numeroPulsaciones;
+            int indice=0;
+            int bloqueTres;
+
+            String letras="ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+            String palabra="";
+            int letraRandom;
+            
+ 
+           numeroMovil=rng.nextInt(8)+2;//numero aleatorio entre el 2 y el 9
+
+           numeroPulsaciones=rng.nextInt(3);//genera pulsaciones del 0 al 2
+           
+            indice=rng.nextInt(letras.length());
+
+     /* 
+           bloqueTres=indice/3; //division entera sin decimales 
+           bloqueTres=bloqueTres*3; //se multiplica por 3 para dar una posicion del indice
+           bloqueTres=bloqueTres+numeroPulsaciones; //se le suma un numero del 0 al 2 para cambiar de posicion en el bloque
+
+           letraRandom=letras.charAt(bloqueTres); //pilla el grupo de tres letras aleatorias
+ /* */
+
+          //TESTEO PARA IMPRIMIR LOS 3 BLOQUES DE LETRAS ALEATORIAS 
+             for (int i=0; i<=2; i++){
+               
+                 bloqueTres=indice/3; //division entera sin decimales 
+                 bloqueTres=bloqueTres*3; //se multiplica por 3 para dar una posicion del indice
+
+                 numeroPulsaciones=i;//se iguala el numero de pulsaciones aleatorias a i para cada vuelta
+                
+                 bloqueTres=bloqueTres+numeroPulsaciones; //se le suma un numero del 0 al 2 para cambiar de posicion en el bloque
+                 letraRandom=letras.charAt(bloqueTres); //pilla el grupo de tres letras aleatorias
+                 palabra=palabra+(char)letraRandom; //guarda las letras
+
+            }
+
+            System.out.println(palabra);
+
+           
+         //  letras=(String)(rng.nextInt(26)+ "A");
+         //   boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
+
+
+
+           
+
+
+
+            
+
+
+        
+        
+        }
 
 }
