@@ -12,8 +12,8 @@ public class App {
 
     // puntuacion ronda
 
-    public static int puntosJ1;
-    public static int puntosJ2;
+    public static double puntosJ1;
+    public static double puntosJ2;
 
     // parametros configuración
 
@@ -163,25 +163,53 @@ public class App {
 
     public static void cifraExacta() {
         int objetivo = rng.nextInt(100, 999);
-        int auxE1 = 0;
-        int auxE2 = 0;
-        for (int i = 0; i < 5; i++) {
-            System.out.println("El objetivo es: " + objetivo);
-            auxE1 = elegirAux();
-            auxE2 = elegirAux();
-
-        }
-        // rondaCifraE(auxiliarJ);
+        double auxE1 = 0;
+        double auxE2 = 0;
+        System.out.println("El objetivo es: " + objetivo);
+        System.out.println("Turno de jugador 1");
+        auxE1 = elegirAux();
+        auxE2 = elegirAux();
+        puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo);
+        System.out.println("Turno de jugador 2");
+        auxE1 = elegirAux();
+        auxE2 = elegirAux();
+        puntosJ2 = rondaCifraE(auxE1, auxE2, objetivo);
+        ganador();
     }
 
-    /*public static int rondaCifraE(int auxE1, int auxE2){
-        System.out.println("Selecciona tu operación: ");
-        System.out.println("1: Suma");
-        System.out.println("2: Resta");
-        System.out.println("3: Multiplicación");
-        System.out.println("4: División");
-        return ;
-    };*/
+    public static double rondaCifraE(double auxE1, double auxE2, int objetivo){
+        double resultado = 0; 
+        double diferencia = 0;
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Selecciona tu operación: ");
+            System.out.println("1: Suma");
+            System.out.println("2: Resta");
+            System.out.println("3: Multiplicación");
+            System.out.println("4: División");
+            int operacion = sc.nextInt();
+            switch (operacion) {
+                case 1:
+                    resultado = auxE1 + auxE2;
+                    break;
+                case 2:
+                    resultado = auxE1 - auxE2;
+                    break;
+                case 3:
+                    resultado = auxE1 * auxE2;
+                    break;
+                case 4:
+                    resultado = auxE1 / auxE2;
+                    break;
+                default:
+                    System.out.println("Esa opcion no vale");
+                    break;
+            }
+            auxE1 = resultado;
+            auxE2 = elegirAux();
+        }
+        diferencia = objetivo - resultado;
+        return diferencia;
+    };
 
     
 
@@ -220,7 +248,15 @@ public class App {
         return auxiliarJ;
     }
 
-    
+    public static void ganador(){
+        if (puntosJ1 > puntosJ2) {
+            System.out.println("Gana el jugador 1");
+        } else if (puntosJ2 > puntosJ1) {
+            System.out.println("Gana el jugador 2");
+        } else {
+            System.out.println("Empate");
+        }
+    }
 
     public static void palabraMasLarga() {
 
