@@ -36,7 +36,7 @@ public class App {
             System.out.println("2.-Concurso");
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
-            modoJuego = Integer.parseInt(sc.nextLine());
+            modoJuego = sc.nextInt();
 
             switch (modoJuego) {
 
@@ -71,7 +71,7 @@ public class App {
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
-            opcionMenu = Integer.parseInt(sc.nextLine());
+            opcionMenu = sc.nextInt();
 
             switch (opcionMenu) {
 
@@ -130,7 +130,7 @@ public class App {
             System.out.println("3.-La calculadora humana");
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
-            modoRapido = Integer.parseInt(sc.nextLine());
+            modoRapido = sc.nextInt();
 
             switch (modoRapido) {
 
@@ -152,7 +152,6 @@ public class App {
 
                 default:
                     System.out.println("Saliste del modo rápido");
-
             }
 
         } while (modoRapido != 5);
@@ -169,12 +168,10 @@ public class App {
         int aux4 = rng.nextInt(10) + 1;
         int aux5 = rng.nextInt(10) + 1;
         int aux6 = rng.nextInt(10) + 1;
-        double auxE1 = 0;
-        double auxE2 = 0;
         System.out.println("El objetivo es: " + objetivo);
         System.out.println("Turno de jugador 1");
-        auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
-        auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        double auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        double auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
         puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
         System.out.println("Turno de jugador 2");
         auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
@@ -185,9 +182,8 @@ public class App {
 
     public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
         double resultado = 0; 
-        double diferencia = 0;
         for (int i = 0; i < 5; i++) {
-            System.out.println("Selecciona tu operación: ");
+            System.out.println("Operación " + (i + 1) + " de 5");
             System.out.println("1: Suma");
             System.out.println("2: Resta");
             System.out.println("3: Multiplicación");
@@ -212,15 +208,17 @@ public class App {
             }
             auxE1 = resultado;
             System.out.println("El resultado es: " + resultado);
-            auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+              if (i < 4) {
+            auxE2 = elegirAux(
+                aux1, aux2, aux3, aux4, aux5, aux6);
+            }
         }
-        diferencia = objetivo - resultado;
-        return diferencia;
+        return Math.abs(objetivo - resultado);
     };
 
     
 
-    public static int elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+    public static double elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
         System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) " + aux4 + " 5) " + aux5 + " 6) " + aux6);
         System.out.println("Jugador introduzca el número auxiliar: ");
         int auxiliarJ = sc.nextInt();
@@ -250,10 +248,10 @@ public class App {
     }
 
     public static void ganador(){
-        if (puntosJ1 > puntosJ2) {
+        if (puntosJ1 < puntosJ2) {
             System.out.println("Gana el jugador 1");
             global1++;
-        } else if (puntosJ2 > puntosJ1) {
+        } else if (puntosJ2 < puntosJ1) {
             System.out.println("Gana el jugador 2");
             global2++;
         } else {
