@@ -163,21 +163,27 @@ public class App {
 
     public static void cifraExacta() {
         int objetivo = rng.nextInt(100, 999);
+        int aux1 = rng.nextInt(10) + 1;
+        int aux2 = rng.nextInt(10) + 1;
+        int aux3 = rng.nextInt(10) + 1;
+        int aux4 = rng.nextInt(10) + 1;
+        int aux5 = rng.nextInt(10) + 1;
+        int aux6 = rng.nextInt(10) + 1;
         double auxE1 = 0;
         double auxE2 = 0;
         System.out.println("El objetivo es: " + objetivo);
         System.out.println("Turno de jugador 1");
-        auxE1 = elegirAux();
-        auxE2 = elegirAux();
-        puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo);
+        auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
         System.out.println("Turno de jugador 2");
-        auxE1 = elegirAux();
-        auxE2 = elegirAux();
-        puntosJ2 = rondaCifraE(auxE1, auxE2, objetivo);
+        auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ2 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
         ganador();
     }
 
-    public static double rondaCifraE(double auxE1, double auxE2, int objetivo){
+    public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
         double resultado = 0; 
         double diferencia = 0;
         for (int i = 0; i < 5; i++) {
@@ -205,7 +211,8 @@ public class App {
                     break;
             }
             auxE1 = resultado;
-            auxE2 = elegirAux();
+            System.out.println("El resultado es: " + resultado);
+            auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
         }
         diferencia = objetivo - resultado;
         return diferencia;
@@ -213,15 +220,9 @@ public class App {
 
     
 
-    public static int elegirAux(){
-        int aux1 = rng.nextInt(10) + 1;
-        int aux2 = rng.nextInt(10) + 1;
-        int aux3 = rng.nextInt(10) + 1;
-        int aux4 = rng.nextInt(10) + 1;
-        int aux5 = rng.nextInt(10) + 1;
-        int aux6 = rng.nextInt(10) + 1;
-        System.out.println("los números auxiliarres son: " + "1)" + aux1 + "2)" + aux2 + "3)" + aux3 + "4)" + aux4 + "5)" + aux5 + "6)" + aux6);
-        System.out.println("Jugador introduzca su primer número auxiliar: ");
+    public static int elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) " + aux4 + " 5) " + aux5 + " 6) " + aux6);
+        System.out.println("Jugador introduzca el número auxiliar: ");
         int auxiliarJ = sc.nextInt();
         switch (auxiliarJ) {
             case 1:
@@ -251,8 +252,10 @@ public class App {
     public static void ganador(){
         if (puntosJ1 > puntosJ2) {
             System.out.println("Gana el jugador 1");
+            global1++;
         } else if (puntosJ2 > puntosJ1) {
             System.out.println("Gana el jugador 2");
+            global2++;
         } else {
             System.out.println("Empate");
         }
