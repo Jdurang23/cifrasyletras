@@ -26,8 +26,6 @@ public class App {
     public static int cantidadLetras = 10;
     public static int cantidadOperacionesCalculadora = 5;
 
-  
-
     // datos desarrollo partida
 
     public static void main(String[] args) {
