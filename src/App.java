@@ -43,11 +43,11 @@ public class App {
             switch (modoJuego) {
 
                 case 1:
-                        modoRapido();
+                    modoRapido();
                     break;
 
                 case 2:
-                        modoConcurso();
+                    modoConcurso();
                     break;
                 case 3:
                     configuracionJuego();
@@ -99,6 +99,7 @@ public class App {
         cifraExacta();
         palabraMasLarga();
         calculadoraHumana();
+        movilViejo();
 
         System.out.println("MARCADOR GLOBAL ----> Jugador1 : " + global1 + " | " + "Jugador2: " + global2);
 
@@ -130,7 +131,7 @@ public class App {
                     break;
 
                 case 4:
-
+                    movilViejo();
                     break;
 
                 default:
@@ -244,24 +245,24 @@ public class App {
 
     public static void palabraMasLarga() {
 
+        String cantidadLetras = "";
+        int vocales = 0;
+        int consonantes = 0;
+        int total = 0;
+
+        String palabraJ1;
+        String palabraJ2;
+
+        boolean esValidaJ1 = false;
+        boolean esValidaJ2 = false;
+        String comprobar;
+
+        boolean puedeFormarseJ1 = true;
+        boolean puedeFormarseJ2 = true;
+        String aux1;
+        String aux2;
+
         for (int j = 0; j < repeticionPrueba; j++) {
-
-            String cantidadLetras = "";
-            int vocales = 0;
-            int consonantes = 0;
-            int total = 0;
-
-            String palabraJ1;
-            String palabraJ2;
-
-            boolean esValidaJ1 = false;
-            boolean esValidaJ2 = false;
-            String comprobar;
-
-            boolean puedeFormarseJ1 = true;
-            boolean puedeFormarseJ2 = true;
-            String aux1;
-            String aux2;
 
             // Generar letras
             while (total < 10) {
@@ -384,23 +385,24 @@ public class App {
         }
     }
 
-    //FUNCION CALCULADORA HUMANA
+    // FUNCION CALCULADORA HUMANA
     public static void calculadoraHumana() {
+
+        long tiempoInicio = System.currentTimeMillis();
+        long tiempoFinal;
+        int segundosPenalizacion = 0;
+        int segundosTotales;
+        int tiempoFinalPenalizacion;
+        int operacionAleatoria;
+
+        int numeroInicial = rng.nextInt(1, 100);
+        int numeroAleatorio = 0;
+
+        int resultado = 0;
+        int respuestaJugador;
+        char signo = ' ';
+
         for (int j = 0; j < repeticionPrueba; j++) {
-
-            long tiempoInicio = System.currentTimeMillis();
-            long tiempoFinal;
-            int segundosPenalizacion = 0;
-            int segundosTotales;
-            int tiempoFinalPenalizacion;
-            int operacionAleatoria;
-
-            int numeroInicial = rng.nextInt(1, 100);
-            int numeroAleatorio = 0;
-
-            int resultado = 0;
-            int respuestaJugador;
-            char signo = ' ';
 
             for (int jugador = 1; jugador <= 2; jugador++) {
 
@@ -413,27 +415,27 @@ public class App {
 
                     switch (operacionAleatoria) {
 
-                    case 0:
-                        signo = '+';
-                        numeroAleatorio = rng.nextInt(90) + 10;
-                        resultado = numeroInicial + numeroAleatorio;
-                        break;
-                    case 1:
-                        signo = '-';
-                        numeroAleatorio = rng.nextInt(90) + 10;
-                        resultado = numeroInicial - numeroAleatorio;
-                        break;
-                    case 2:
-                        signo = '*';
-                        numeroAleatorio = rng.nextInt(9) + 1;
-                        resultado = numeroInicial * numeroAleatorio;
-                        break;
-                    case 3:
-                        signo = '/';
-                        numeroAleatorio = rng.nextInt(9) + 1;
-                        numeroInicial = numeroInicial * numeroAleatorio;
-                        resultado = numeroInicial / numeroAleatorio;
-                        break;
+                        case 0:
+                            signo = '+';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial + numeroAleatorio;
+                            break;
+                        case 1:
+                            signo = '-';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial - numeroAleatorio;
+                            break;
+                        case 2:
+                            signo = '*';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            resultado = numeroInicial * numeroAleatorio;
+                            break;
+                        case 3:
+                            signo = '/';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            numeroInicial = numeroInicial * numeroAleatorio;
+                            resultado = numeroInicial / numeroAleatorio;
+                            break;
 
                     }
 
@@ -449,7 +451,7 @@ public class App {
                         segundosPenalizacion = segundosPenalizacion + 20;
                     }
 
-                numeroInicial = resultado;
+                    numeroInicial = resultado;
 
                 }
                 tiempoFinal = System.currentTimeMillis();
@@ -484,66 +486,71 @@ public class App {
         }
     }
 
+    // PRUEBA ORIGINAL
 
- //PRUEBA ORIGINAL
+    public static void movilViejo() {
 
-        public static void movilViejo(){
+        int numeroMovil;
+        int numeroPulsaciones;
+        int indice = 0;
 
-            int numeroMovil;
-            int numeroPulsaciones;
-            int indice=0;
-            int bloqueTres;
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        int letraRandom;
+        char letraGenerada;
 
-            String letras="ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-            String palabra="";
-            int letraRandom;
-            
- 
-           numeroMovil=rng.nextInt(8)+2;//numero aleatorio entre el 2 y el 9
+        String respuestaJ1;
+        String respuestaJ2;
 
-           numeroPulsaciones=rng.nextInt(3);//genera pulsaciones del 0 al 2
-           
-            indice=rng.nextInt(letras.length());
+        for (int j = 0; j <= repeticionPrueba; j++) {
 
-     /* 
-           bloqueTres=indice/3; //division entera sin decimales 
-           bloqueTres=bloqueTres*3; //se multiplica por 3 para dar una posicion del indice
-           bloqueTres=bloqueTres+numeroPulsaciones; //se le suma un numero del 0 al 2 para cambiar de posicion en el bloque
+            String palabra = "";
+            String codigo = "";
 
-           letraRandom=letras.charAt(bloqueTres); //pilla el grupo de tres letras aleatorias
- /* */
+            for (int i = 0; i < 5; i++) { // bucle for para generar 5 letras
 
-          //TESTEO PARA IMPRIMIR LOS 3 BLOQUES DE LETRAS ALEATORIAS 
-             for (int i=0; i<=2; i++){
-               
-                 bloqueTres=indice/3; //division entera sin decimales 
-                 bloqueTres=bloqueTres*3; //se multiplica por 3 para dar una posicion del indice
+                numeroMovil = rng.nextInt(9) + 1;// numero aleatorio entre el 1 y el 9
 
-                 numeroPulsaciones=i;//se iguala el numero de pulsaciones aleatorias a i para cada vuelta
-                
-                 bloqueTres=bloqueTres+numeroPulsaciones; //se le suma un numero del 0 al 2 para cambiar de posicion en el bloque
-                 letraRandom=letras.charAt(bloqueTres); //pilla el grupo de tres letras aleatorias
-                 palabra=palabra+(char)letraRandom; //guarda las letras
+                numeroPulsaciones = rng.nextInt(3) + 1;// genera pulsaciones del 0 al 2
+
+                codigo = codigo + numeroMovil + numeroPulsaciones + " "; // la variable guarda el numero aleatorio de la
+                                                                         // tecla del movil y las veces que se pulsan de
+                                                                         // forma aleatoria
+                indice = ((numeroMovil - 1) * 3) + (numeroPulsaciones - 1); // inicio del bloque de letras y devuelve la
+                                                                            // letra exacta
+                letraGenerada = letras.charAt(indice); // pilla el grupo de tres letras
+                palabra += letraGenerada; // acumulacion de las letras para generar una palabra
 
             }
 
-            System.out.println(palabra);
+            System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
+            System.out.println(" Jugador 1 adivina la palabra: ");
+            respuestaJ1 = sc.nextLine();
+            if (respuestaJ1.equalsIgnoreCase(palabra)) {
+                puntosJ1++;
+            }
+            System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
+            System.out.println(" Jugador 2 adivina la palabra: ");
+            respuestaJ2 = sc.nextLine();
 
-           
-         //  letras=(String)(rng.nextInt(26)+ "A");
-         //   boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
+            if (respuestaJ2.equalsIgnoreCase(palabra)) {
+                puntosJ2++;
+            }
 
+            System.out.println("La palabra real era " + palabra);
 
-
-           
-
-
-
-            
-
-
-        
-        
         }
+
+        if (puntosJ1 > puntosJ2) {
+            global1++;
+        } else if (puntosJ2 > puntosJ1) {
+            global2++;
+        } else {
+            System.out.println("EMPATE");
+        }
+
+        // letras=(String)(rng.nextInt(26)+ "A");
+        // boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
+
+    }
 
 }
