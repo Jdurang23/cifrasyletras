@@ -543,10 +543,14 @@ public class App {
         int numeroMovil;
         int numeroPulsaciones;
         int indice = 0;
-
         String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-        int letraRandom;
+       
         char letraGenerada;
+       
+     
+        
+        int letraRandom;
+       
 
         String respuestaJ1;
         String respuestaJ2;
@@ -571,6 +575,8 @@ public class App {
                 palabra += letraGenerada; // acumulacion de las letras para generar una palabra
 
             }
+
+            
 
             System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 1 adivina la palabra: ");
@@ -602,6 +608,8 @@ public class App {
         // boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
 
     }
+
+   
 
 }
 
