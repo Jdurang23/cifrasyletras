@@ -72,6 +72,7 @@ public class App {
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
             opcionMenu = sc.nextInt();
+            
 
             switch (opcionMenu) {
 
@@ -115,6 +116,7 @@ public class App {
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
             modoRapido = sc.nextInt();
+            
 
             switch (modoRapido) {
 
@@ -142,7 +144,7 @@ public class App {
 
     }
 
-    // Seccion La Cifra Exacta
+    //Seccion La Cifra Exacta
 
     public static void cifraExacta() {
         int objetivo = rng.nextInt(100, 999);
@@ -164,9 +166,8 @@ public class App {
         ganador();
     }
 
-    public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4,
-            int aux5, int aux6) {
-        double resultado = 0;
+    public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        double resultado = 0; 
         for (int i = 0; i < 5; i++) {
             System.out.println("Operación " + (i + 1) + " de 5");
             System.out.println("1: Suma");
@@ -193,17 +194,18 @@ public class App {
             }
             auxE1 = resultado;
             System.out.println("El resultado es: " + resultado);
-            if (i < 4) {
-                auxE2 = elegirAux(
-                        aux1, aux2, aux3, aux4, aux5, aux6);
+              if (i < 4) {
+            auxE2 = elegirAux(
+                aux1, aux2, aux3, aux4, aux5, aux6);
             }
         }
         return Math.abs(objetivo - resultado);
     };
 
-    public static double elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6) {
-        System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) "
-                + aux4 + " 5) " + aux5 + " 6) " + aux6);
+    
+
+    public static double elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) " + aux4 + " 5) " + aux5 + " 6) " + aux6);
         System.out.println("Jugador introduzca el número auxiliar: ");
         int auxiliarJ = sc.nextInt();
         switch (auxiliarJ) {
@@ -231,7 +233,7 @@ public class App {
         return auxiliarJ;
     }
 
-    public static void ganador() {
+    public static void ganador(){
         if (puntosJ1 < puntosJ2) {
             System.out.println("Gana el jugador 1");
             global1++;
@@ -259,8 +261,7 @@ public class App {
 
         boolean puedeFormarseJ1 = true;
         boolean puedeFormarseJ2 = true;
-        String aux1;
-        String aux2;
+        
 
         for (int j = 0; j < repeticionPrueba; j++) {
 
@@ -540,10 +541,14 @@ public class App {
         int numeroMovil;
         int numeroPulsaciones;
         int indice = 0;
-
         String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-        int letraRandom;
+       
         char letraGenerada;
+       
+     
+        
+        int letraRandom;
+       
 
         String respuestaJ1;
         String respuestaJ2;
@@ -568,6 +573,8 @@ public class App {
                 palabra += letraGenerada; // acumulacion de las letras para generar una palabra
 
             }
+
+            
 
             System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 1 adivina la palabra: ");
@@ -599,6 +606,8 @@ public class App {
         // boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
 
     }
+
+   
 
 }
 
