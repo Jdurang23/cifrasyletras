@@ -25,6 +25,8 @@ public class App {
     public static int cantidadLetras = 10;
     public static int cantidadOperacionesCalculadora = 5;
 
+    public static int numeroInicial;
+
     // datos desarrollo partida
 
     public static void main(String[] args) {
@@ -430,14 +432,10 @@ public class App {
         int segundosPenalizacion = 0;
         int segundosTotales;
         int tiempoFinalPenalizacion;
-        int operacionAleatoria;
-
-        int numeroInicial = rng.nextInt(1, 100);
-        int numeroAleatorio = 0;
+       
 
         int resultado = 0;
         int respuestaJugador;
-        char signo = ' ';
 
         for (int j = 0; j < repeticionPrueba; j++) {
 
@@ -446,37 +444,12 @@ public class App {
                 System.out.println("---TURNO JUGADOR " + jugador + "---");
                 sc.nextLine();
 
-                for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
+               numeroInicial=rng.nextInt(1, 100);
 
-                    operacionAleatoria = rng.nextInt(4);
+                 for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
 
-                    switch (operacionAleatoria) {
-
-                        case 0:
-                            signo = '+';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial + numeroAleatorio;
-                            break;
-                        case 1:
-                            signo = '-';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial - numeroAleatorio;
-                            break;
-                        case 2:
-                            signo = '*';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            resultado = numeroInicial * numeroAleatorio;
-                            break;
-                        case 3:
-                            signo = '/';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            numeroInicial = numeroInicial * numeroAleatorio;
-                            resultado = numeroInicial / numeroAleatorio;
-                            break;
-
-                    }
-
-                    System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);
+                    resultado=operacionAleatoria(); 
+               
                     System.out.println("Cual es el resultado?");
                     respuestaJugador = Integer.parseInt(sc.nextLine());
 
@@ -520,7 +493,44 @@ public class App {
             } else {
                 System.out.println("EMPATE. ningún jugador suma puntos");
             }
-        }
+       }
+    }
+
+    public static int operacionAleatoria(){
+
+        int  operacionAleatoria = rng.nextInt(4);
+        int numeroAleatorio=0;
+        int resultado=0;
+        char signo=' ';
+
+                switch (operacionAleatoria) {
+
+                           case 0:
+                            signo = '+';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial + numeroAleatorio;
+                            break;
+                        case 1:
+                            signo = '-';
+                            numeroAleatorio = rng.nextInt(90) + 10;
+                            resultado = numeroInicial - numeroAleatorio;
+                            break;
+                        case 2:
+                            signo = '*';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            resultado = numeroInicial * numeroAleatorio;
+                            break;
+                        case 3:
+                            signo = '/';
+                            numeroAleatorio = rng.nextInt(9) + 1;
+                            numeroInicial = numeroInicial * numeroAleatorio;
+                            resultado = numeroInicial / numeroAleatorio;
+                            break;
+
+                    }    
+                    System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);   
+                   return resultado;
+
     }
 
     // PRUEBA ORIGINAL
@@ -591,3 +601,5 @@ public class App {
     }
 
 }
+
+
