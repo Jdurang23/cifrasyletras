@@ -52,7 +52,9 @@ public class App {
                 case 3:
                     configuracionJuego();
                     break;
-
+                case 4:
+                    System.out.println("Saliendo...");
+                    break;
                 default:
                     System.out.println("Opción Incorrecta");
 
@@ -447,20 +449,15 @@ public class App {
                numeroInicial=rng.nextInt(1, 100);
 
                  for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
-
                     resultado=operacionAleatoria(); 
-               
                     System.out.println("Cual es el resultado?");
                     respuestaJugador = Integer.parseInt(sc.nextLine());
 
                     if (respuestaJugador == resultado) {
-
                         System.out.println("Respuesta correcta ");
                     } else {
-
                         segundosPenalizacion = segundosPenalizacion + 20;
                     }
-
                     numeroInicial = resultado;
 
                 }
@@ -476,7 +473,6 @@ public class App {
 
                 } else {
                     puntosJ2 = tiempoFinalPenalizacion;
-
                 }
 
             }
@@ -502,34 +498,31 @@ public class App {
         int numeroAleatorio=0;
         int resultado=0;
         char signo=' ';
-
-                switch (operacionAleatoria) {
-
-                           case 0:
-                            signo = '+';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial + numeroAleatorio;
-                            break;
-                        case 1:
-                            signo = '-';
-                            numeroAleatorio = rng.nextInt(90) + 10;
-                            resultado = numeroInicial - numeroAleatorio;
-                            break;
-                        case 2:
-                            signo = '*';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            resultado = numeroInicial * numeroAleatorio;
-                            break;
-                        case 3:
-                            signo = '/';
-                            numeroAleatorio = rng.nextInt(9) + 1;
-                            numeroInicial = numeroInicial * numeroAleatorio;
-                            resultado = numeroInicial / numeroAleatorio;
-                            break;
-
-                    }    
-                    System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);   
-                   return resultado;
+        switch (operacionAleatoria) {
+            case 0:
+                signo = '+';
+                numeroAleatorio = rng.nextInt(90) + 10;
+                resultado = numeroInicial + numeroAleatorio;
+                break;
+            case 1:
+                signo = '-';
+                numeroAleatorio = rng.nextInt(90) + 10;
+                resultado = numeroInicial - numeroAleatorio;
+                break;
+            case 2:
+                signo = '*';
+                numeroAleatorio = rng.nextInt(9) + 1;
+                resultado = numeroInicial * numeroAleatorio;
+                break;
+            case 3:
+                signo = '/';
+                numeroAleatorio = rng.nextInt(9) + 1;
+                numeroInicial = numeroInicial * numeroAleatorio;
+                resultado = numeroInicial / numeroAleatorio;
+                break;
+        }    
+        System.out.println("Número inicial: " + numeroInicial + "" + signo + "" + numeroAleatorio);   
+        return resultado;
 
     }
 
@@ -539,74 +532,94 @@ public class App {
 
         int numeroMovil;
         int numeroPulsaciones;
-        int indice = 0;
-        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        //int indice = 0;
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
        
-        char letraGenerada;
-       
-     
-        
-        int letraRandom;
-       
+        int letraGenerada;
 
-        String respuestaJ1;
-        String respuestaJ2;
-
-        for (int j = 0; j <= repeticionPrueba; j++) {
+        for (int i = 0; i <= repeticionPrueba; i++) {
 
             String palabra = "";
             String codigo = "";
 
-            for (int i = 0; i < 5; i++) { // bucle for para generar 5 letras
+            for (int j = 0; j < 5; j++) { // bucle for para generar 5 letras
 
                 numeroMovil = rng.nextInt(9) + 1;// numero aleatorio entre el 1 y el 9
-
                 numeroPulsaciones = rng.nextInt(3) + 1;// genera pulsaciones del 0 al 2
-
-                codigo = codigo + numeroMovil + numeroPulsaciones + " "; // la variable guarda el numero aleatorio de la
-                                                                         // tecla del movil y las veces que se pulsan de
-                                                                         // forma aleatoria
-                indice = ((numeroMovil - 1) * 3) + (numeroPulsaciones - 1); // inicio del bloque de letras y devuelve la
-                                                                            // letra exacta
-                letraGenerada = letras.charAt(indice); // pilla el grupo de tres letras
-                palabra += letraGenerada; // acumulacion de las letras para generar una palabra
-
-            }
-
-            
-
-            System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
+                codigo = codigo + numeroMovil + numeroPulsaciones + " "; // la variable guarda el numero aleatorio de la tecla del movil y las veces que se pulsan de forma aleatoria
+                palabra = palabra + definirLetra(numeroMovil, numeroPulsaciones); // acumulacion de las letras para generar una palabra
+            }            
+            sc.nextLine();
+            System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 1 adivina la palabra: ");
-            respuestaJ1 = sc.nextLine();
+            String respuestaJ1 = sc.nextLine();
             if (respuestaJ1.equalsIgnoreCase(palabra)) {
+                System.out.println("En efecto, la palabra es: " + palabra);
                 puntosJ1++;
+            } else{
+                System.out.println("Que pena, esa no era la palabra");
             }
-            System.out.println("Ronda " + (j + 1) + " El codigo numerico es : " + codigo);
+            System.out.println("");
+            System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 2 adivina la palabra: ");
-            respuestaJ2 = sc.nextLine();
-
+            String respuestaJ2 = sc.nextLine();
             if (respuestaJ2.equalsIgnoreCase(palabra)) {
                 puntosJ2++;
+            } else{
+                System.out.println("Que pena, esa no era la palabra");
             }
-
             System.out.println("La palabra real era " + palabra);
 
         }
 
         if (puntosJ1 > puntosJ2) {
+            System.out.println("Gana el Jugador1");
             global1++;
         } else if (puntosJ2 > puntosJ1) {
+            System.out.println("Gana el Jugador2");
             global2++;
         } else {
             System.out.println("EMPATE");
         }
-
-        // letras=(String)(rng.nextInt(26)+ "A");
-        // boolean elegirLetra=(letras=="ABC" || letras=="DEF" || letras =="");
-
     }
 
-   
+    public static String definirLetra(int numeroMovil, int numeroPulsaciones){
+        String trio = "";
+        String pulsacion = "";
+        switch (numeroMovil) {
+            case 1:
+                trio = "ABC";
+                break;
+            case 2:
+                trio = "DEF";
+                break;
+            case 3:
+                trio = "GHI";
+                break;
+            case 4:
+                trio = "JKL";
+                break;
+            case 5:
+                trio = "MNÑ";
+                break;
+            case 6:
+                trio = "OPQ";
+                break;
+            case 7:
+                trio = "RST";
+                break;
+            case 8:
+                trio = "UVW";
+                break;
+            case 9:
+                trio = "XYZ";
+                break;
+            default:
+                break;
+        }
+        pulsacion = String.valueOf(trio.charAt(numeroPulsaciones - 1));
+        return pulsacion;
+    }
 
 }
 
