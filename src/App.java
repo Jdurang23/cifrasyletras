@@ -39,7 +39,6 @@ public class App {
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
             modoJuego = sc.nextInt();
-            modoJuego = sc.nextInt();
 
             switch (modoJuego) {
 
@@ -72,7 +71,6 @@ public class App {
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
-            opcionMenu = sc.nextInt();
             opcionMenu = sc.nextInt();
 
             switch (opcionMenu) {
@@ -116,7 +114,6 @@ public class App {
             System.out.println("3.-La calculadora humana");
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
-            modoRapido = sc.nextInt();
             modoRapido = sc.nextInt();
 
             switch (modoRapido) {
