@@ -17,7 +17,7 @@ public class App {
 
     // parametros configuración
 
-    public static int repeticionPrueba = 0;
+    public static int repeticionPrueba = 1;
     public static int opcionMenu = 0;
     public static int modoJuego = 0;
     public static int modoRapido = 0;
@@ -29,8 +29,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        movilViejo();
-
         do {
             System.out.println("-BIENVENIDO AL CONCURSO CIFRAS Y LETRAS-");
             System.out.println("Seleccione un juego:");
@@ -38,6 +36,7 @@ public class App {
             System.out.println("2.-Concurso");
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
+            modoJuego = sc.nextInt();
             modoJuego = sc.nextInt();
 
             switch (modoJuego) {
@@ -71,6 +70,7 @@ public class App {
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
+            opcionMenu = sc.nextInt();
             opcionMenu = sc.nextInt();
 
             switch (opcionMenu) {
@@ -114,6 +114,7 @@ public class App {
             System.out.println("3.-La calculadora humana");
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
+            modoRapido = sc.nextInt();
             modoRapido = sc.nextInt();
 
             switch (modoRapido) {
@@ -265,46 +266,23 @@ public class App {
         for (int j = 0; j < repeticionPrueba; j++) {
 
             // Generar letras
-            while (total < 10) {
-                char letra = (char) (rng.nextInt(26) + 'A');
-                boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
+            String letrasAleatorias = generarLetras();
 
-                if (!vocal) {
-                    if (vocales < 6) {
-                        cantidadLetras += letra;
-                        vocales++;
-                        total++;
-                    }
-                } else {
-                    if (consonantes < 6) {
-                        cantidadLetras += letra;
-                        consonantes++;
-                        total++;
-                    }
-                }
-            }
-
-            // se imprimen las letras generadas recogiendolas con un bucle for
-
-            for (int i = 0; i < cantidadLetras.length(); i++) {
-
-                System.out.print(cantidadLetras.charAt(i) + " ");
-
-            }
-
-            // se imprime las vocales y las consonantes
-            System.out.println();
-            System.out.println("Vocales: " + vocales + " | Consonantes: " + consonantes);
+            // se imprimen las vocales y consonantes recogiendolas con un bucle for
+            imprimirLetras(letrasAleatorias);
 
             // se pide al usuario que introduzca las palabras de cada jugador
             System.out.println("Introduce la palabra del jugador 1: ");
-            palabraJ1 = String.valueOf(sc.nextLine()).toUpperCase();
+            palabraJ1 = sc.next().toUpperCase();
+            sc.nextLine();
             System.out.println("Introduce la palabra del jugador 2: ");
-            palabraJ2 = String.valueOf(sc.nextLine()).toUpperCase();
+            palabraJ2 = sc.next().toUpperCase();
+            sc.nextLine();
 
             // DICCIONARIO JUGADOR 1
             System.out.println("Jugador 2, ¿la palabra del Jugador 1 está en el diccionario?: (S/N)");
-            comprobar = sc.nextLine();
+            comprobar = sc.next().toUpperCase();
+            sc.nextLine();
             if (comprobar.equalsIgnoreCase("S")) {
                 esValidaJ1 = true;
             } else if (comprobar.equalsIgnoreCase("N")) {
@@ -313,42 +291,18 @@ public class App {
 
             // DICCIONARIO JUGADOR 2
             System.out.println("Jugador 1, ¿la palabra del Jugador 2 está en el diccionario?: (S/N)");
-            comprobar = sc.nextLine();
+            comprobar = sc.next().toUpperCase();
+            sc.nextLine();
             if (comprobar.equalsIgnoreCase("S")) {
                 esValidaJ2 = true;
             } else if (comprobar.equalsIgnoreCase("N")) {
                 esValidaJ2 = false;
             }
 
-            // Validacion Jugador 1
-            aux1 = cantidadLetras;
-            for (int i = 0; i < palabraJ1.length(); i++) {
+            // Validacion jugador
 
-                char letraActual = palabraJ1.charAt(i);
-                int indice = aux1.indexOf(letraActual);// buscamos la posicion en la que esta la letra
-
-                if (indice == -1) {
-                    puedeFormarseJ1 = false;
-                    break;
-                } else {
-                    aux1 = aux1.substring(0, indice) + aux1.substring(indice + 1);// eliminamos
-                }
-            }
-
-            // Validacion Jugador 2
-            aux2 = cantidadLetras;
-            for (int i = 0; i < palabraJ2.length(); i++) {
-
-                char letraActual = palabraJ2.charAt(i);
-                int indice = aux2.indexOf(letraActual);
-
-                if (indice == -1) {
-                    puedeFormarseJ2 = false;
-                    break;
-                } else {
-                    aux2 = aux2.substring(0, indice) + aux2.substring(indice + 1);
-                }
-            }
+            puedeFormarseJ1 = validacionJugador(palabraJ1, cantidadLetras);
+            puedeFormarseJ2 = validacionJugador(palabraJ2, cantidadLetras);
 
             // Conteo de puntos
 
@@ -383,6 +337,92 @@ public class App {
                 System.out.println("EMPATE. ningún jugador suma puntos");
             }
         }
+    }
+
+    /**
+     * Función para validar jugador recibe dos variables String y devuelve true en
+     * caso de que las letras
+     * sean válidas
+     * 
+     * @param palabra
+     * @param letra
+     * @return
+     */
+
+    public static boolean validacionJugador(String palabra, String letra) {
+
+        String aux = letra;
+
+        for (int i = 0; i < palabra.length(); i++) {
+
+            char letraActual = palabra.charAt(i);
+            int indice = aux.indexOf(letraActual); // se busca la posicion en la que esta la letra
+
+            if (indice == -1) {
+                return false;
+            } else {
+                aux = aux.substring(0, indice) + aux.substring(indice + 1); // se elimina la letra usada
+            }
+
+        }
+
+        return true;
+    }
+
+    // funcion que genera letras aleatorias
+    public static String generarLetras() {
+
+        String cantidadLetras = "";
+        String abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        int vocales = 0;
+        int consonantes = 0;
+        int total = 0;
+
+        while (total < 10) {
+            int indice = rng.nextInt(abc.length());// Seleccion de letra
+            char letra = abc.charAt(indice);
+            boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
+
+            if (vocal) {
+                if (vocales < 6) {
+                    cantidadLetras += letra;
+                    vocales++;
+                    total++;
+                }
+            } else {
+                if (consonantes < 6) {
+                    cantidadLetras += letra;
+                    consonantes++;
+                    total++;
+                }
+            }
+        }
+        return cantidadLetras;
+
+    }
+
+    // funcion que imprime las letras recibiendo un String
+    public static void imprimirLetras(String letras) {
+
+        int vocales = 0;
+        int consontantes;
+
+        for (int i = 0; i < letras.length(); i++) {
+            char l = letras.charAt(i);
+            System.out.println(l + " ");
+
+            if (l == 'A' || l == 'E' || l == 'I' || l == 'O' || l == '8') {
+
+                vocales++;
+            }
+
+        }
+
+        consontantes = letras.length() - vocales;
+
+        System.out.println();
+        System.out.println("Vocales " + vocales + " | Consonantes " + consontantes);
+
     }
 
     // FUNCION CALCULADORA HUMANA
