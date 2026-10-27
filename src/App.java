@@ -12,8 +12,8 @@ public class App {
 
     // puntuacion ronda
 
-    public static int puntosJ1;
-    public static int puntosJ2;
+    public static double puntosJ1;
+    public static double puntosJ2;
 
     // parametros configuración
 
@@ -29,7 +29,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        movilViejo();
+        
 
         do {
             System.out.println("-BIENVENIDO AL CONCURSO CIFRAS Y LETRAS-");
@@ -38,7 +38,7 @@ public class App {
             System.out.println("2.-Concurso");
             System.out.println("3.-Configuración del juego");
             System.out.println("4.-Salir");
-            modoJuego = Integer.parseInt(sc.nextLine());
+            modoJuego = sc.nextInt();
 
             switch (modoJuego) {
 
@@ -71,7 +71,7 @@ public class App {
             System.out.println("2.-Cantidad de letras: ");
             System.out.println("3.-Cantidad de operaciones: ");
             System.out.println("4.-Salir");
-            opcionMenu = Integer.parseInt(sc.nextLine());
+            opcionMenu = sc.nextInt();
 
             switch (opcionMenu) {
 
@@ -114,7 +114,7 @@ public class App {
             System.out.println("3.-La calculadora humana");
             System.out.println("4.-Prueba original");
             System.out.println("5.-Salir");
-            modoRapido = Integer.parseInt(sc.nextLine());
+            modoRapido = sc.nextInt();
 
             switch (modoRapido) {
 
@@ -136,61 +136,112 @@ public class App {
 
                 default:
                     System.out.println("Saliste del modo rápido");
-
             }
 
         } while (modoRapido != 5);
 
     }
 
+    //Seccion La Cifra Exacta
+
     public static void cifraExacta() {
-
         int objetivo = rng.nextInt(100, 999);
-        int auxiliar1 = rng.nextInt(1, 10);
-        int auxiliar2 = rng.nextInt(1, 10);
-        int auxiliar3 = rng.nextInt(1, 10);
-        int auxiliar4 = rng.nextInt(1, 10);
-        int auxiliar5 = rng.nextInt(1, 10);
-        int auxiliar6 = rng.nextInt(1, 10);
-
-        for (int j = 0; j < repeticionPrueba; j++) {
-            for (int i = 0; i < 5; i++) {
-                System.out.println("El objetivo es: " + objetivo);
-                System.out.println("los números auxiliarres son: " + "1)" + auxiliar1 + "2)" + auxiliar2 + "3)"
-                        + auxiliar3 + "4)" + auxiliar4 + "5)" + auxiliar5 + "6)" + auxiliar6);
-                System.out.println("Jugador introduzca su primer número auxiliar");
-                int auxiliarJ = sc.nextInt();
-                switch (auxiliarJ) {
-                    case 1:
-                        auxiliarJ = auxiliar1;
-                        break;
-                    case 2:
-                        auxiliarJ = auxiliar2;
-                        break;
-                    case 3:
-                        auxiliarJ = auxiliar3;
-                        break;
-                    case 4:
-                        auxiliarJ = auxiliar4;
-                        break;
-                    case 5:
-                        auxiliarJ = auxiliar5;
-                        break;
-                    case 6:
-                        auxiliarJ = auxiliar6;
-                        break;
-                    default:
-                        System.out.println("Ese número no es un auxiliar");
-                }
-                break;
-            }
-
-        } // rondaCifraE(auxiliarJ);
+        int aux1 = rng.nextInt(10) + 1;
+        int aux2 = rng.nextInt(10) + 1;
+        int aux3 = rng.nextInt(10) + 1;
+        int aux4 = rng.nextInt(10) + 1;
+        int aux5 = rng.nextInt(10) + 1;
+        int aux6 = rng.nextInt(10) + 1;
+        System.out.println("El objetivo es: " + objetivo);
+        System.out.println("Turno de jugador 1");
+        double auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        double auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ1 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
+        System.out.println("Turno de jugador 2");
+        auxE1 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        auxE2 = elegirAux(aux1, aux2, aux3, aux4, aux5, aux6);
+        puntosJ2 = rondaCifraE(auxE1, auxE2, objetivo, aux1, aux2, aux3, aux4, aux5, aux6);
+        ganador();
     }
 
-    // public static int rondaCifraE(int auxiliarJ){};
+    public static double rondaCifraE(double auxE1, double auxE2, int objetivo, int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        double resultado = 0; 
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Operación " + (i + 1) + " de 5");
+            System.out.println("1: Suma");
+            System.out.println("2: Resta");
+            System.out.println("3: Multiplicación");
+            System.out.println("4: División");
+            int operacion = sc.nextInt();
+            switch (operacion) {
+                case 1:
+                    resultado = auxE1 + auxE2;
+                    break;
+                case 2:
+                    resultado = auxE1 - auxE2;
+                    break;
+                case 3:
+                    resultado = auxE1 * auxE2;
+                    break;
+                case 4:
+                    resultado = auxE1 / auxE2;
+                    break;
+                default:
+                    System.out.println("Esa opcion no vale");
+                    break;
+            }
+            auxE1 = resultado;
+            System.out.println("El resultado es: " + resultado);
+              if (i < 4) {
+            auxE2 = elegirAux(
+                aux1, aux2, aux3, aux4, aux5, aux6);
+            }
+        }
+        return Math.abs(objetivo - resultado);
+    };
 
-    // FUNCION PALABRA MAS LARGA
+    
+
+    public static double elegirAux(int aux1, int aux2, int aux3, int aux4, int aux5, int aux6){
+        System.out.println("los números auxiliarres son: " + "1) " + aux1 + " 2) " + aux2 + " 3) " + aux3 + " 4) " + aux4 + " 5) " + aux5 + " 6) " + aux6);
+        System.out.println("Jugador introduzca el número auxiliar: ");
+        int auxiliarJ = sc.nextInt();
+        switch (auxiliarJ) {
+            case 1:
+                auxiliarJ = aux1;
+                break;
+            case 2:
+                auxiliarJ = aux2;
+                break;
+            case 3:
+                auxiliarJ = aux3;
+                break;
+            case 4:
+                auxiliarJ = aux4;
+                break;
+            case 5:
+                auxiliarJ = aux5;
+                break;
+            case 6:
+                auxiliarJ = aux6;
+                break;
+            default:
+                System.out.println("Ese número no es un auxiliar");
+        }
+        return auxiliarJ;
+    }
+
+    public static void ganador(){
+        if (puntosJ1 < puntosJ2) {
+            System.out.println("Gana el jugador 1");
+            global1++;
+        } else if (puntosJ2 < puntosJ1) {
+            System.out.println("Gana el jugador 2");
+            global2++;
+        } else {
+            System.out.println("Empate");
+        }
+    }
 
     public static void palabraMasLarga() {
 
@@ -214,32 +265,10 @@ public class App {
         for (int j = 0; j < repeticionPrueba; j++) {
 
             // Generar letras
-            while (total < 10) {
-                char letra = (char) (rng.nextInt(26) + 'A');
-                boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
-
-                if (!vocal) {
-                    if (vocales < 6) {
-                        cantidadLetras += letra;
-                        vocales++;
-                        total++;
-                    }
-                } else {
-                    if (consonantes < 6) {
-                        cantidadLetras += letra;
-                        consonantes++;
-                        total++;
-                    }
-                }
-            }
+            String letrasAleatorias=generarLetras();
 
             // se imprimen las letras generadas recogiendolas con un bucle for
-
-            for (int i = 0; i < cantidadLetras.length(); i++) {
-
-                System.out.print(cantidadLetras.charAt(i) + " ");
-
-            }
+            imprimirLetras(letrasAleatorias);
 
             // se imprime las vocales y las consonantes
             System.out.println();
@@ -269,37 +298,12 @@ public class App {
                 esValidaJ2 = false;
             }
 
-            // Validacion Jugador 1
-            aux1 = cantidadLetras;
-            for (int i = 0; i < palabraJ1.length(); i++) {
+            //Validacion jugador
 
-                char letraActual = palabraJ1.charAt(i);
-                int indice = aux1.indexOf(letraActual);// buscamos la posicion en la que esta la letra
+            puedeFormarseJ1=validacionJugador(palabraJ1, cantidadLetras);
+            puedeFormarseJ2=validacionJugador(palabraJ2, cantidadLetras);
 
-                if (indice == -1) {
-                    puedeFormarseJ1 = false;
-                    break;
-                } else {
-                    aux1 = aux1.substring(0, indice) + aux1.substring(indice + 1);// eliminamos
-                }
-            }
-
-            // Validacion Jugador 2
-            aux2 = cantidadLetras;
-            for (int i = 0; i < palabraJ2.length(); i++) {
-
-                char letraActual = palabraJ2.charAt(i);
-                int indice = aux2.indexOf(letraActual);
-
-                if (indice == -1) {
-                    puedeFormarseJ2 = false;
-                    break;
-                } else {
-                    aux2 = aux2.substring(0, indice) + aux2.substring(indice + 1);
-                }
-            }
-
-            // Conteo de puntos
+           // Conteo de puntos
 
             if (esValidaJ1 && puedeFormarseJ1) {
 
@@ -333,6 +337,94 @@ public class App {
             }
         }
     }
+
+    /**
+     * Función para validar jugador recibe dos variables String y devuelve true en caso de que las letras 
+     * sean válidas
+     * @param palabra
+     * @param letra
+     * @return
+     */
+
+
+    public static boolean validacionJugador(String palabra, String letra){
+
+        String aux=letra;
+
+        for(int i=0; i<palabra.length(); i++){
+
+            char letraActual=palabra.charAt(i);
+            int indice=aux.indexOf(letra); //se busca la posicion en la que esta la letra
+
+            if(indice==-1){
+                return false;
+            }else{
+               aux=aux.substring(0,indice) + aux.substring(indice+1); // se elimina la letra usada
+            }
+
+        }
+
+        return true;
+    }
+
+    //funcion que genera letras aleatorias 
+    public static String generarLetras(){
+
+        String cantidadLetras="";
+        String abc="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        int vocales=0;
+        int consonantes=0;
+        int total=0;
+
+                while (total < 10) {
+                int indice =rng.nextInt(abc.length());//Seleccion de letra 
+                char letra=abc.charAt(indice);
+                boolean vocal = (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' || letra == 'U');
+
+                if (vocal) {
+                    if (vocales < 6) {
+                        cantidadLetras += letra;
+                        vocales++;
+                        total++;
+                    }
+                } else {
+                    if (consonantes < 6) {
+                        cantidadLetras += letra;
+                        consonantes++;
+                        total++;
+                    }
+                }
+            }
+                 return cantidadLetras;
+
+    }
+
+    //funcion que imprime las letras recibiendo un String
+    public static void imprimirLetras(String letras){
+
+        int vocales=0;
+        int consontantes;
+
+        for(int i=0; i<letras.length(); i++){
+            char l =letras.charAt(i);
+            System.out.println(l + " ");
+
+       if(l=='A' || l=='E' || l=='I' || l=='O' || l=='8' ){
+
+        vocales++;
+       }
+            
+        }
+
+        consontantes=letras.length()-vocales;
+
+        System.out.println();
+        System.out.println("Vocales " + vocales + " | Consonantes " + consontantes);
+        
+
+
+    }
+
 
     // FUNCION CALCULADORA HUMANA
     public static void calculadoraHumana() {
