@@ -79,16 +79,16 @@ public class App {
 
                 case 1:
                     System.out.println("Veces a repetir :");
-                    repeticionPrueba = Integer.parseInt(sc.nextLine());
+                    repeticionPrueba = sc.nextInt();
                     break;
                 case 2:
                     System.out.println("Introduzca número de letras: ");
-                    cantidadLetras = Integer.parseInt(sc.nextLine());
+                    cantidadLetras = sc.nextInt();
                     break;
 
                 case 3:
                     System.out.println("Introduzca número de operaciones");
-                    cantidadOperacionesCalculadora = Integer.parseInt(sc.nextLine());
+                    cantidadOperacionesCalculadora = sc.nextInt();
                     break;
                 default:
                     System.out.println("Saliste del menú");
@@ -303,16 +303,16 @@ public class App {
             // Validacion jugador
 
             puedeFormarseJ1 = validacionJugador(palabraJ1, cantidadLetras);
-            puedeFormarseJ2 = validacionJugador(palabraJ2, cantidadLetras);
+            //puedeFormarseJ2 = validacionJugador(palabraJ2, cantidadLetras);
 
             // Conteo de puntos
 
-            if (esValidaJ1 && puedeFormarseJ1) {
+            if (esValidaJ1 ) {
 
                 puntosJ1 = palabraJ1.length();
             }
 
-            if (esValidaJ2 && puedeFormarseJ2) {
+            if (esValidaJ2 ) {
 
                 puntosJ2 = palabraJ2.length();
             }
@@ -323,12 +323,12 @@ public class App {
 
             // resultado
             System.out.println("---RESULTADO---");
-            if (puntosJ1 > puntosJ2) {
+            if (puntosJ1 > puntosJ2 ) {
                 global1++;
                 System.out.println("Gana el jugador 1");
                 System.out.println("El jugador 1 suma 1 punto en el marcador global");
 
-            } else if (puntosJ2 > puntosJ1) {
+            } else if (puntosJ1 < puntosJ2) {
                 global2++;
                 System.out.println("Gana el jugador 2");
                 System.out.println("El jugador 2 suma 1 punto en el marcador global");
@@ -374,7 +374,7 @@ public class App {
     public static String generarLetras() {
 
         String cantidadLetras = "";
-        String abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        String abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ";
         int vocales = 0;
         int consonantes = 0;
         int total = 0;
@@ -410,9 +410,9 @@ public class App {
 
         for (int i = 0; i < letras.length(); i++) {
             char l = letras.charAt(i);
-            System.out.println(l + " ");
+            System.out.print(l + " ");
 
-            if (l == 'A' || l == 'E' || l == 'I' || l == 'O' || l == '8') {
+            if (l == 'A' || l == 'E' || l == 'I' || l == 'O' || l == 'U') {
 
                 vocales++;
             }
