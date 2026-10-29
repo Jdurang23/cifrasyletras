@@ -446,20 +446,20 @@ public class App {
                 System.out.println("---TURNO JUGADOR " + jugador + "---");
                 sc.nextLine();
 
-               numeroInicial=rng.nextInt(1, 100);
+                int numeroInicial=rng.nextInt(1, 100);
 
-                 for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
-                    resultado=operacionAleatoria(); 
+                for (int i = 0; i < cantidadOperacionesCalculadora; i++) {
+                    resultado=operacionAleatoria(numeroInicial, resultado); 
                     System.out.println("Cual es el resultado?");
-                    respuestaJugador = Integer.parseInt(sc.nextLine());
+                    respuestaJugador = sc.nextInt();
 
                     if (respuestaJugador == resultado) {
                         System.out.println("Respuesta correcta ");
                     } else {
-                        segundosPenalizacion = segundosPenalizacion + 20;
+                        segundosPenalizacion += 20;
+
                     }
                     numeroInicial = resultado;
-
                 }
                 tiempoFinal = System.currentTimeMillis();
                 segundosTotales = (int) ((tiempoFinal - tiempoInicio) / 1000);
@@ -492,11 +492,10 @@ public class App {
        }
     }
 
-    public static int operacionAleatoria(){
+    public static int operacionAleatoria(int numeroInicial, int resultado){
 
         int  operacionAleatoria = rng.nextInt(4);
         int numeroAleatorio=0;
-        int resultado=0;
         char signo=' ';
         switch (operacionAleatoria) {
             case 0:
@@ -517,7 +516,7 @@ public class App {
             case 3:
                 signo = '/';
                 numeroAleatorio = rng.nextInt(9) + 1;
-                numeroInicial = numeroInicial * numeroAleatorio;
+                //numeroInicial = numeroInicial * numeroAleatorio;
                 resultado = numeroInicial / numeroAleatorio;
                 break;
         }    
