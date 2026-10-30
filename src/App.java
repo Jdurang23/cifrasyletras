@@ -247,22 +247,12 @@ public class App {
 
     public static void palabraMasLarga() {
 
-        String cantidadLetras = "";
-        int vocales = 0;
-        int consonantes = 0;
-        int total = 0;
-
         String palabraJ1;
         String palabraJ2;
 
         boolean esValidaJ1 = false;
         boolean esValidaJ2 = false;
         String comprobar;
-
-        boolean puedeFormarseJ1 = true;
-        boolean puedeFormarseJ2 = true;
-        String aux1;
-        String aux2;
 
         for (int j = 0; j < repeticionPrueba; j++) {
 
@@ -302,7 +292,7 @@ public class App {
 
             // Validacion jugador
 
-            puedeFormarseJ1 = validacionJugador(palabraJ1, cantidadLetras);
+            //puedeFormarseJ1 = validacionJugador(palabraJ1, cantidadLetras);
             //puedeFormarseJ2 = validacionJugador(palabraJ2, cantidadLetras);
 
             // Conteo de puntos
@@ -531,10 +521,6 @@ public class App {
 
         int numeroMovil;
         int numeroPulsaciones;
-        //int indice = 0;
-        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-       
-        int letraGenerada;
 
         for (int i = 0; i <= repeticionPrueba; i++) {
 
@@ -552,7 +538,7 @@ public class App {
             System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 1 adivina la palabra: ");
             String respuestaJ1 = sc.nextLine();
-            if (respuestaJ1.equalsIgnoreCase(palabra)) {
+            if (respuestaJ1.equals(palabra)) {
                 System.out.println("En efecto, la palabra es: " + palabra);
                 puntosJ1++;
             } else{
@@ -562,7 +548,7 @@ public class App {
             System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 2 adivina la palabra: ");
             String respuestaJ2 = sc.nextLine();
-            if (respuestaJ2.equalsIgnoreCase(palabra)) {
+            if (respuestaJ2.equals(palabra)) {
                 puntosJ2++;
             } else{
                 System.out.println("Que pena, esa no era la palabra");
@@ -587,31 +573,31 @@ public class App {
         String pulsacion = "";
         switch (numeroMovil) {
             case 1:
-                trio = "ABC";
+                trio = "abc";
                 break;
             case 2:
-                trio = "DEF";
+                trio = "def";
                 break;
             case 3:
-                trio = "GHI";
+                trio = "ghi";
                 break;
             case 4:
-                trio = "JKL";
+                trio = "jkl";
                 break;
             case 5:
-                trio = "MNÑ";
+                trio = "mnñ";
                 break;
             case 6:
-                trio = "OPQ";
+                trio = "opq";
                 break;
             case 7:
-                trio = "RST";
+                trio = "rst";
                 break;
             case 8:
-                trio = "UVW";
+                trio = "uvw";
                 break;
             case 9:
-                trio = "XYZ";
+                trio = "xyz";
                 break;
             default:
                 break;
