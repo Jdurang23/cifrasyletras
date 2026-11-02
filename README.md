@@ -34,7 +34,16 @@ el recuento de las puntuaciones globales de cada jugador.
    y devuelve el resultado. La otra se encarga de comparar el resultado con aquel introducido por el usuario en el teclado así como calcular el tiempo
    que tarda cada jugador en realizar la prueba y asignarle tiempo de penalización
 
+>Prueba original (Movil viejo)
 
+   La prueba original la hemos llamado movil viejo y consiste en generar un grupo de 5 numeros de dos dígitos aleatorios. El primer digito del grupo
+   corresponde al número de la tecla de un móvil y el segundo al número de pulsaciones para localizar la letra. La idea es mostrar estos números por 
+   pantalla , estos , representan una palabra que puede no tener sentido , y el jugador ha de intentar adivinar esa palabra para ganar el punto .
+
+   El primer método int recibe como parámetro el numeroMovil y numeroPulsaciones y genera grupos de tres palabras siguiendo la metodología del teclado
+   numérico de los móviles antiguos mediante un switch y devuelve las pulsaciones. En el método principal se usa un bulce for para generar el bloque
+   de dos números aleatorios y llamar al primer método para recoger las letras y se pide al usuario que compruebe si su palabra es igual a las generadas
+   aleatoriamente
 
 
 
