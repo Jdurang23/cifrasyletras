@@ -13,7 +13,7 @@ el recuento de las puntuaciones globales de cada jugador.
 
 ## Funciones del programa
 
- Este proyecto cuenta con varias funciones para cada prueba. Dichas funciones están separadas en funciones lógicas(donde se programa la parte algorítmica)
+ Este proyecto cuenta con varias funciones para cada prueba. Dichos métodos están separadas en lógicos(donde se programa la parte algorítmica)
  y en funciones de interfaz(donde se piden datos al usuario). 
 
 >La cifra exacta
@@ -40,9 +40,9 @@ el recuento de las puntuaciones globales de cada jugador.
    corresponde al número de la tecla de un móvil y el segundo al número de pulsaciones para localizar la letra. La idea es mostrar estos números por 
    pantalla , estos , representan una palabra que puede no tener sentido , y el jugador ha de intentar adivinar esa palabra para ganar el punto .
 
-   El primer método int recibe como parámetro el numeroMovil y numeroPulsaciones y genera grupos de tres palabras siguiendo la metodología del teclado
+   El primer método int recibe como parámetro el numeroMovil y numeroPulsaciones y genera grupos de cinco palabras siguiendo la metodología del teclado
    numérico de los móviles antiguos mediante un switch y devuelve las pulsaciones. En el método principal se usa un bulce for para generar el bloque
-   de dos números aleatorios y llamar al primer método para recoger las letras y se pide al usuario que compruebe si su palabra es igual a las generadas
+   de dos números aleatorios y llamar al primer método para recoger las letras  .Se pide al usuario que compruebe si su palabra es igual a las generadas
    aleatoriamente
 
 
