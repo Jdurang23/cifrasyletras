@@ -23,7 +23,11 @@ el recuento de las puntuaciones globales de cada jugador.
    rodaCifraE() recibe como parametro las variables auxiliares de la anterior funcion , dos variables auxiliares más y una objetivo. La función tiene un 
    bucle for que itera 5 veces y cuenta con un switch para elegir las distintas operaciones aritmeticas. Devuelve el valor de la diferencia entre el resultado y el número objetivo. La ultima función se encarga de generar numeros aleatorios y llamar a las anteriores funciones.
    
-
+>La palabra más larga
+   
+   En esta prueba tenemos una función que se encarga de generar las letras del abecedario , otra función booleana que valida al jugador localizando
+   la posición de la letra en la palabra devolviendo true o false si la encuentra o no. La función principal se encarga de pedir datos al usuario por
+   teclado y comprobar si existen las palabras introducidas 
 
 
 
