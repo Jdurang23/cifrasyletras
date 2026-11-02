@@ -26,8 +26,15 @@ el recuento de las puntuaciones globales de cada jugador.
 >La palabra más larga
    
    En esta prueba tenemos una función que se encarga de generar las letras del abecedario , otra función booleana que valida al jugador localizando
-   la posición de la letra en la palabra devolviendo true o false si la encuentra o no. La función principal se encarga de pedir datos al usuario por
-   teclado y comprobar si existen las palabras introducidas 
+   la posición de la letra en la palabra devolviendo true o false si la encuentra o no .La última función lógica recibe un string e imprime las vocales y las consonantes. La función principal se encarga de pedir datos al usuario por teclado y comprobar si existen las palabras introducidas 
+
+>Calculadora humana
+
+   Este modo de juego cuenta con dos funciones. La primera , se encarga de generar una operación aleatoria con números aleatorios mediante un switch 
+   y devuelve el resultado. La otra se encarga de comparar el resultado con aquel introducido por el usuario en el teclado así como calcular el tiempo
+   que tarda cada jugador en realizar la prueba y asignarle tiempo de penalización
+
+
 
 
 
