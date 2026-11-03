@@ -45,6 +45,7 @@ el recuento de las puntuaciones globales de cada jugador.
    de dos números aleatorios y llamar al primer método para recoger las letras  .Se pide al usuario que compruebe si su palabra es igual a las generadas
    aleatoriamente
 
+ Los integrantes del proyecto han sido Daniel Mediavilla Marcos y Jesús Durán García
 
 
 
