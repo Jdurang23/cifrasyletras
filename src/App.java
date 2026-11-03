@@ -538,7 +538,7 @@ public class App {
             System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 1 adivina la palabra: ");
             String respuestaJ1 = sc.nextLine();
-            if (respuestaJ1.equals(palabra)) {
+            if (respuestaJ1.equalsIgnoreCase(palabra)) {
                 System.out.println("En efecto, la palabra es: " + palabra);
                 puntosJ1++;
             } else{
@@ -548,7 +548,7 @@ public class App {
             System.out.println("Ronda " + (i + 1) + " El codigo numerico es : " + codigo);
             System.out.println(" Jugador 2 adivina la palabra: ");
             String respuestaJ2 = sc.nextLine();
-            if (respuestaJ2.equals(palabra)) {
+            if (respuestaJ2.equalsIgnoreCase(palabra)) {
                 puntosJ2++;
             } else{
                 System.out.println("Que pena, esa no era la palabra");
